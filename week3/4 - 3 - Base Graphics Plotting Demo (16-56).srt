@@ -1,0 +1,1115 @@
+
+1
+00:00:00,000 --> 00:00:04,082
+So here, I've started up bar and I'm just
+gonna do a little bit of simple plotting
+
+2
+00:00:04,082 --> 00:00:09,036
+to just kind of show what the, the basics
+are of the of the, the plotting options.
+
+3
+00:00:09,036 --> 00:00:12,838
+So, I'm going to stimulate a litte, a
+little bit of data here so I can make a
+
+4
+00:00:12,838 --> 00:00:15,408
+plot.
+So, I have a hundred random variables here
+
+5
+00:00:15,408 --> 00:00:18,758
+and I'm going to call it hist to make
+histogram of the plot.
+
+6
+00:00:18,758 --> 00:00:23,551
+So, the first thing you'll, you'll notice
+when I called hist, is that a plot window
+
+7
+00:00:23,551 --> 00:00:27,021
+opens up.
+So, let me just move it over here, and the
+
+8
+00:00:27,021 --> 00:00:31,071
+histogram of the data is shown.
+And you can see that, even though I didn't
+
+9
+00:00:31,071 --> 00:00:36,057
+actually specify any arguments to hist
+besides the data themselves a number of
+
+10
+00:00:36,057 --> 00:00:40,027
+things appeared on the plot ag, without my
+specifying them.
+
+11
+00:00:40,027 --> 00:00:45,020
+So, for example, there's a title here and
+then there's an x label here, so here the,
+
+12
+00:00:45,037 --> 00:00:50,013
+the label is just x because that's what
+the object was called when I passed it to
+
+13
+00:00:50,013 --> 00:00:53,018
+hist.
+The label here is frequency which is the
+
+14
+00:00:53,018 --> 00:00:58,017
+default for histogram so it shows you the
+number of elements within this range.
+
+15
+00:00:58,017 --> 00:01:02,567
+So, for example, between minus one and
+zero there's going to, there's a little
+
+16
+00:01:02,567 --> 00:01:06,877
+over 30 elements of the vector in that
+range and you can see that the shape of
+
+17
+00:01:06,877 --> 00:01:10,067
+the histogram is roughly like a normal
+distribution.
+
+18
+00:01:10,253 --> 00:01:15,094
+So, let me just generate some more data
+here and so, we can make a little scatter
+
+19
+00:01:15,094 --> 00:01:17,667
+plot.
+So, I'm going to generate some more data
+
+20
+00:01:17,838 --> 00:01:21,347
+and I'll plot xy here.
+So now, the plotting window is already
+
+21
+00:01:21,347 --> 00:01:26,003
+open, so when I call plot it's not going
+to launch a new plotting window, it's
+
+22
+00:01:26,003 --> 00:01:30,680
+going to send the plot to the, the current
+plotting window, which is this one here.
+
+23
+00:01:30,680 --> 00:01:36,486
+So, I've specified, I've called plot and
+you can see the mixed scatter plot of the
+
+24
+00:01:36,486 --> 00:01:41,554
+points the default plotting symbol here is
+an open circle you can see and again the
+
+25
+00:01:41,554 --> 00:01:46,209
+labeling, I didn't specify any arguments
+besides x and y, but the number of things
+
+26
+00:01:46,209 --> 00:01:50,934
+have occurred in the plot, for example,
+the label here as specified as x on the
+
+27
+00:01:50,934 --> 00:01:53,979
+x-axis and the label on the y-axis is
+specified as y.
+
+28
+00:01:53,979 --> 00:01:59,091
+If I had changed the name of the object,
+so let's say, I say rnorm 100 here and I
+
+29
+00:01:59,091 --> 00:02:02,351
+plot x and z.
+Well, the plot looks different because the
+
+30
+00:02:02,351 --> 00:02:07,839
+data are different but you can see the
+label here turn, turn to z, because that's
+
+31
+00:02:07,839 --> 00:02:12,081
+the name of the object.
+So, let me just go back to x and y.
+
+32
+00:02:13,287 --> 00:02:19,054
+And so, a number of things on the plotting
+region are important for example, the
+
+33
+00:02:19,054 --> 00:02:24,043
+margins here are, are these are four
+margins here, one for each side.
+
+34
+00:02:24,286 --> 00:02:30,617
+This is side one, this is side two this is
+side three and this is side four over
+
+35
+00:02:30,617 --> 00:02:34,401
+here.
+You can see the margin for the bottom is,
+
+36
+00:02:34,631 --> 00:02:38,202
+is, is the largest.
+So, there's, there's five lines of margin
+
+37
+00:02:38,202 --> 00:02:41,604
+text available.
+On the side two, there's four lines of
+
+38
+00:02:41,604 --> 00:02:46,000
+margin text available.
+On the top, there's also four, so side
+
+39
+00:02:46,000 --> 00:02:51,914
+three, and on the right side, side four,
+there's the smallest amount of a margin
+
+40
+00:02:51,914 --> 00:02:55,456
+text available.
+So, you can adjust that using the mar
+
+41
+00:02:55,456 --> 00:02:58,593
+function.
+So, for example, I can just say par, and
+
+42
+00:02:58,593 --> 00:03:04,030
+then I say mar equals, let's say, I want,
+let's say, I want two on every side.
+
+43
+00:03:04,030 --> 00:03:06,032
+So, two, two, two, two.
+Excuse me.
+
+44
+00:03:06,239 --> 00:03:11,610
+And then I can plot again and you can see
+that now the plot the margins have gotten
+
+45
+00:03:11,610 --> 00:03:16,072
+a lot smaller and the plot kind of extends
+farther out into the window.
+
+46
+00:03:16,072 --> 00:03:21,050
+But the problem, as you can see that on
+the x and the y-axis, I lost my label.
+
+47
+00:03:21,249 --> 00:03:26,073
+And so, even though I have the tick marks
+there I don't have my x and y label.
+
+48
+00:03:26,073 --> 00:03:30,044
+So, we probably need to make them a little
+bigger than that.
+
+49
+00:03:30,044 --> 00:03:32,447
+So, maybe I'll say four, four, two, two,
+like that.
+
+50
+00:03:32,447 --> 00:03:37,712
+So now, if I plot again now you can see
+there is just enough for the x and y label
+
+51
+00:03:37,712 --> 00:03:40,384
+there.
+I'm just going to demo a couple of the
+
+52
+00:03:40,384 --> 00:03:44,797
+other options that may be of interest to
+you as you're quick constructing your
+
+53
+00:03:44,797 --> 00:03:46,983
+plot.
+So, the first is the plotting symbol.
+
+54
+00:03:46,983 --> 00:03:49,983
+I can say plot xy and then pch equals,
+let's say, twenty.
+
+55
+00:03:50,149 --> 00:03:54,794
+That gives me a solid circle here.
+If I want a slightly solid symbol here I
+
+56
+00:03:54,794 --> 00:03:57,782
+could say pch = nineteen.
+Or I could, you know, specify pch = two
+
+57
+00:03:57,783 --> 00:04:01,875
+and that gives me triangles, three gives
+me little plus signs, four gives me xs,
+
+58
+00:04:01,875 --> 00:04:04,319
+etc.
+As you can see, so, you can see that
+
+59
+00:04:04,319 --> 00:04:06,072
+there's many different plotting symbols to
+try.
+
+60
+00:04:06,272 --> 00:04:11,019
+You might be wondering how I know all the
+numbers for these plotting symbols.
+
+61
+00:04:11,019 --> 00:04:15,919
+Well, that just comes after many years of
+use, I've memorized most of them all but
+
+62
+00:04:15,919 --> 00:04:21,143
+of course, if you haven't memorized them
+quite yet a handy tool is the example file
+
+63
+00:04:21,143 --> 00:04:24,044
+for points.
+So, if you just hit points, example set of
+
+64
+00:04:24,044 --> 00:04:29,171
+points it'll go through a number of demos
+so you can see how the capabilities that R
+
+65
+00:04:29,347 --> 00:04:33,090
+that R can do of plotting.
+But most important are the, is there a
+
+66
+00:04:33,090 --> 00:04:37,034
+little plot of, sorry, a little chart of
+the symbols here.
+
+67
+00:04:37,230 --> 00:04:42,049
+And so, you can see that's a, for example,
+one is a open circle, two is the triangle,
+
+68
+00:04:42,049 --> 00:04:46,374
+three is the plus, etc.
+Here twenty was the solid circle, small,
+
+69
+00:04:46,374 --> 00:04:50,076
+nineteen, was the larger circle.
+If you wanted a solid square, that's
+
+70
+00:04:50,076 --> 00:04:53,076
+fifteen a solid triangle of seventeen,
+etc.
+
+71
+00:04:53,076 --> 00:04:59,005
+So, you can specify what type of symbol
+you want just by using the number here.
+
+72
+00:04:59,204 --> 00:05:03,947
+Another, the thing, if you notice the
+symbols 21 through 25 those are actually
+
+73
+00:05:03,947 --> 00:05:08,926
+symbols that are similar to say, to ones
+that are, that have been previously shown,
+
+74
+00:05:08,926 --> 00:05:13,559
+so for example, one through six.
+However, the difference is in 21 through
+
+75
+00:05:13,559 --> 00:05:18,950
+25, those symbols have a have a boundary
+so you can see that the boundary is red.
+
+76
+00:05:18,950 --> 00:05:22,835
+And they have a fill which in this case is
+yellow.
+
+77
+00:05:22,835 --> 00:05:28,638
+So, you can specify two different colors,
+one for the boundary and for the outline,
+
+78
+00:05:28,638 --> 00:05:32,961
+and one for the color.
+And so, the boundary color is specified
+
+79
+00:05:32,961 --> 00:05:37,752
+using the col, col argument.
+And the, the background color, the fill
+
+80
+00:05:37,752 --> 00:05:41,578
+color is specified by using the bg
+argument.
+
+81
+00:05:41,578 --> 00:05:44,072
+So.
+You, so, you can specify two different
+
+82
+00:05:44,072 --> 00:05:50,051
+colors like that if you want.
+Here's another chart of the plotting
+
+83
+00:05:50,051 --> 00:05:56,907
+symbols and you can continue through the
+demo here for points if you want and let
+
+84
+00:05:56,907 --> 00:06:02,076
+me just finish it up here.
+It's just some of the special symbols that
+
+85
+00:06:02,076 --> 00:06:06,092
+you can plot if you want.
+This is in a different font.
+
+86
+00:06:07,030 --> 00:06:14,364
+And let me just quit out of here.
+So, so, that's one way to change the
+
+87
+00:06:14,364 --> 00:06:20,010
+symbol here.
+I'm going to go back to my plot here, so
+
+88
+00:06:20,010 --> 00:06:26,479
+pch equals let's say, twenty.
+Excuse me I have to regenerate my data
+
+89
+00:06:26,479 --> 00:06:34,729
+because it was overwritten by the example.
+So, here is my data again my little
+
+90
+00:06:34,729 --> 00:06:39,940
+scatter plot.
+Now, I can add a title to the plot by
+
+91
+00:06:39,940 --> 00:06:47,078
+using the title and I will say this is my
+scatter plot and that adds the title.
+
+92
+00:06:48,198 --> 00:06:53,031
+I could add some text if I wanted to.
+So, for example, I could use the text
+
+93
+00:06:53,031 --> 00:06:58,658
+function to say, add a little label here.
+Let's say, I will give it the coordinates,
+
+94
+00:06:58,658 --> 00:07:04,075
+let's say -two and -two.
+See that label appears there, I can add a
+
+95
+00:07:04,075 --> 00:07:10,049
+legend if I wanted to.
+Save the legend, and the legend you can
+
+96
+00:07:10,049 --> 00:07:17,068
+give it kind of location specifications,
+for example, top left will put the legend
+
+97
+00:07:17,068 --> 00:07:23,075
+in the top left, and then I'll say just
+give it a specific label.
+
+98
+00:07:23,297 --> 00:07:29,010
+Excuse me, let me just put [unknown].
+So now, I've got a little legend there.
+
+99
+00:07:29,225 --> 00:07:35,052
+And so there's all kinds of annotations
+that you can add to the data as you kind
+
+100
+00:07:35,052 --> 00:07:39,024
+of go along.
+So, for example, I could fiddle, if I want
+
+101
+00:07:39,024 --> 00:07:44,080
+to plot a line in the data, I can fit a
+linear model using the lm function and
+
+102
+00:07:45,002 --> 00:07:49,687
+then the ab line function will add the
+linear model fit on top of that here.
+
+103
+00:07:49,687 --> 00:07:55,382
+The data are related to the other, each
+other so, that the linear model is, the
+
+104
+00:07:55,382 --> 00:07:59,055
+line is pretty flat.
+If I wanted to adjust the thick, the
+
+105
+00:07:59,055 --> 00:08:04,803
+thickness of that line, I could use the ab
+line and specify the lwd to be, let's say,
+
+106
+00:08:04,803 --> 00:08:07,084
+three.
+You can see that a new line is plotted
+
+107
+00:08:07,084 --> 00:08:11,089
+over there, which is much thicker.
+So, you probably wouldn't want to do this
+
+108
+00:08:11,089 --> 00:08:16,010
+or from the get-go, if you want to remake
+this plot, you'd probably just specify
+
+109
+00:08:16,010 --> 00:08:20,025
+from the get-go lwd = three.
+You don't want to just like plot two lines
+
+110
+00:08:20,025 --> 00:08:24,062
+on top of each other, but I'm just showing
+this for demonstrate, demonstration sake.
+
+111
+00:08:24,218 --> 00:08:29,093
+I could have also changed the color.
+So I make the color, say, blue and that
+
+112
+00:08:29,093 --> 00:08:33,327
+would make it blue.
+And so there are lots of different types
+
+113
+00:08:33,327 --> 00:08:38,072
+of options you can specify here when
+you're, as you're making a plot.
+
+114
+00:08:38,264 --> 00:08:43,461
+So, usually, you're going to, want to
+create x labels and y labels which are,
+
+115
+00:08:43,461 --> 00:08:48,843
+kind of represent what the data are.
+So, you can plot, you can put a lot of
+
+116
+00:08:48,843 --> 00:08:54,132
+these options in the plot function itself.
+So, I could say, plot xy and maybe, and
+
+117
+00:08:54,132 --> 00:09:00,664
+maybe x lab is let's see, weight, and then
+a y lay up a y lab will be, say, height.
+
+118
+00:09:01,299 --> 00:09:06,023
+Main will be scatter plot.
+Pch will be twenty.
+
+119
+00:09:06,023 --> 00:09:11,305
+So, that gets, now I have actual labels on
+the x-axis and y-axis.
+
+120
+00:09:11,522 --> 00:09:17,213
+I can put my legend back, if I want.
+You know, I'll put it in the top right
+
+121
+00:09:17,213 --> 00:09:27,698
+this time.
+And then I can add my little line here.
+
+122
+00:09:27,698 --> 00:09:36,110
+So, let's say, fit is, or maybe I'll make
+the line red this time.
+
+123
+00:09:36,110 --> 00:09:44,419
+So, that's my plot with the labels with
+the linear aggression line and with the
+
+124
+00:09:44,419 --> 00:09:47,760
+legend.
+Now, lets see what happens when we try to
+
+125
+00:09:47,760 --> 00:09:52,166
+put more than one plot on the page.
+So, for example, let's say, I have an
+
+126
+00:09:52,166 --> 00:09:57,330
+another variable which I'll call z.
+And may be it's I don't know, let me make
+
+127
+00:09:57,330 --> 00:09:59,652
+some plus on data here.
+Oh, excuse me.
+
+128
+00:09:59,798 --> 00:10:04,660
+And let's say, I want to plot z versus x
+and then I also want to plot y versus x on
+
+129
+00:10:04,660 --> 00:10:08,609
+the same canvas here.
+So the first thing I can do is, let's say,
+
+130
+00:10:08,609 --> 00:10:13,029
+I want to put, let's say, I want to put
+the plots right on top of each other.
+
+131
+00:10:13,029 --> 00:10:18,324
+So, I'll say par mf row equals so, what is
+going to happen is I want to have two rows
+
+132
+00:10:18,324 --> 00:10:21,323
+of plots and then one column of plots,
+right?
+
+133
+00:10:21,323 --> 00:10:26,670
+So, that's what we want to see.
+So now, let's plot x and y on top and x
+
+134
+00:10:26,670 --> 00:10:30,958
+and z on the bottom.
+So, x and y, pch goes twenty, so you see
+
+135
+00:10:30,958 --> 00:10:36,042
+that goes on that top.
+And on the bottom here, all you have x and
+
+136
+00:10:36,042 --> 00:10:39,659
+z, say, equals nineteen and that goes on
+the bottom.
+
+137
+00:10:39,659 --> 00:10:45,366
+So now, you can see that the margins are
+little bit large here, probably larger
+
+138
+00:10:45,366 --> 00:10:50,015
+than we would want.
+And you see that the, the margin that I,
+
+139
+00:10:50,015 --> 00:10:54,411
+that's specified here is that.
+And so, we probably want to adjust the
+
+140
+00:10:54,411 --> 00:11:01,004
+size of the margin, now that we've kind of
+rearranged the configuration of the plots.
+
+141
+00:11:01,409 --> 00:11:10,063
+So, we can maybe say something like par,
+same r equals that.
+
+142
+00:11:11,038 --> 00:11:16,677
+Now, if I plot it again, they get a little
+bit bigger.
+
+143
+00:11:16,677 --> 00:11:24,515
+Say, twenty again.
+So that's how, now I put two plots on the
+
+144
+00:11:24,515 --> 00:11:27,674
+screen.
+I could have done it the other way.
+
+145
+00:11:27,674 --> 00:11:33,950
+I could have said, instead of having them
+top and bottom, I could have had them
+
+146
+00:11:33,950 --> 00:11:38,632
+right and left, by saying par mf row
+equals, say, one, two.
+
+147
+00:11:38,847 --> 00:11:47,039
+Now I can plot like this like that.
+So, I can see I made the margins a little
+
+148
+00:11:47,039 --> 00:11:51,076
+bit too small cuz I lost my y-axis label
+here.
+
+149
+00:11:51,076 --> 00:11:56,937
+So, I'm able to say par, I'll go back to
+four, four, two, two like this and make
+
+150
+00:11:56,937 --> 00:12:02,608
+the plots again.
+So, you can see that when you rearrange
+
+151
+00:12:02,608 --> 00:12:07,529
+the plotting layout, you might want to
+rearrange the, the, the canvas itself to
+
+152
+00:12:07,529 --> 00:12:12,086
+kind of remove some of the white space.
+I won't do that for the moment just so I
+
+153
+00:12:12,086 --> 00:12:16,902
+can continue with the demo here.
+But, for example, you can put four plots
+
+154
+00:12:16,902 --> 00:12:22,715
+on a page like, say, mar equals, sorry, I
+meant mf row equals two, two, that means
+
+155
+00:12:22,715 --> 00:12:26,694
+two rows and two columns.
+So, I can say plot x and y, now go in the
+
+156
+00:12:26,694 --> 00:12:29,063
+upper left.
+You see that, now if we plot x and z, you
+
+157
+00:12:29,063 --> 00:12:31,084
+might wonder where is the next plot going
+to go?
+
+158
+00:12:31,084 --> 00:12:35,063
+Well, because I specified mf row, the
+plots are going to go across the rows.
+
+159
+00:12:35,063 --> 00:12:38,561
+So, the next plot is going to be in the
+upper right and then the next plot is
+
+160
+00:12:38,561 --> 00:12:43,039
+going to be in the lower left so let me
+say, a plot of z and x instead of x and z.
+
+161
+00:12:43,239 --> 00:12:47,097
+And then, the last plot is going to go in
+the lower right here.
+
+162
+00:12:47,097 --> 00:12:52,834
+So, that, now, I've got four plots on a
+page by specifying, specifying the mf row
+
+163
+00:12:53,077 --> 00:12:57,034
+option.
+If I've specified mf col the same thing
+
+164
+00:12:57,034 --> 00:13:02,085
+would've happened, but the order in which
+the plots occurred would've been
+
+165
+00:13:02,085 --> 00:13:06,560
+different.
+So now, I can say, plot xy and that
+
+166
+00:13:06,560 --> 00:13:11,481
+appears on the same place but the next
+plot now is going to appear on the lower
+
+167
+00:13:11,481 --> 00:13:14,601
+left.
+And the next plot is going to be in the
+
+168
+00:13:14,601 --> 00:13:18,027
+upper right and the last plot is going to
+be in the lower right.
+
+169
+00:13:18,027 --> 00:13:21,008
+So, that's the difference between mf row
+and mf col.
+
+170
+00:13:21,096 --> 00:13:27,008
+The last option I'll talk about here is
+the points function, just as a, just a
+
+171
+00:13:27,008 --> 00:13:31,087
+demonstration to how you can annotate a
+plot by adding things to it.
+
+172
+00:13:31,087 --> 00:13:37,047
+So let me just reset the plot regions so
+that I'm only doing one plot at a time
+
+173
+00:13:37,047 --> 00:13:40,051
+here.
+Now suppose I generate some data and
+
+174
+00:13:40,051 --> 00:13:45,519
+suppose that the data consists of, say,
+men and women, so there's two groups of
+
+175
+00:13:45,519 --> 00:13:49,041
+people here.
+So I'm just going to generate some data
+
+176
+00:13:49,041 --> 00:13:54,067
+here, and maybe I'll give them a little
+relationship so it's a little bit more
+
+177
+00:13:54,067 --> 00:13:58,069
+interesting.
+And let's say I've got another variable
+
+178
+00:13:58,069 --> 00:14:02,047
+here which is the group and its going to
+be half and half.
+
+179
+00:14:02,047 --> 00:14:06,052
+So, there's two groups and the 50 level,
+50 iteration speech.
+
+180
+00:14:06,260 --> 00:14:09,086
+Let me just give them names, let's say
+labels.
+
+181
+00:14:13,011 --> 00:14:16,078
+So, you got males and females in this
+group of people here.
+
+182
+00:14:16,078 --> 00:14:19,055
+You can see that it's a factor variable of
+two levels.
+
+183
+00:14:19,055 --> 00:14:24,050
+So, suppose I want to plot the data, if I
+just plot the data x and y you can not
+
+184
+00:14:24,050 --> 00:14:28,096
+tell who are the males and who are
+females, right, because, they all are the
+
+185
+00:14:28,096 --> 00:14:31,833
+same color, for example.
+And so, suppose I want to plot the data
+
+186
+00:14:31,833 --> 00:14:35,077
+and plot and make males one color and
+females another color.
+
+187
+00:14:35,265 --> 00:14:39,026
+So, how do I do that?
+So, first thing you want to do, the basic
+
+188
+00:14:39,026 --> 00:14:43,606
+idea is you're going to set up the plot
+region, but you are not going to plot any
+
+189
+00:14:43,606 --> 00:14:46,682
+of the data.
+And then you're going to add the data by
+
+190
+00:14:46,682 --> 00:14:50,060
+gender, so you can maybe add the females
+first, and then add the males.
+
+191
+00:14:50,060 --> 00:14:54,040
+And the idea is that each time you add the
+data points, there will be other different
+
+192
+00:14:54,040 --> 00:14:57,012
+colors, or perhaps a different plotting
+symbol or whatever.
+
+193
+00:14:57,012 --> 00:14:59,030
+So, let, first, let's set up the plotting
+region.
+
+194
+00:14:59,030 --> 00:15:02,085
+So, I'm going to say, plot xy.
+So, I'm going to pass at the data but I'm
+
+195
+00:15:02,085 --> 00:15:06,017
+going to, say, type equals n.
+So this means, make the plot but don't
+
+196
+00:15:06,017 --> 00:15:10,002
+actually put the data in there.
+So, you can see when I hii, when I execute
+
+197
+00:15:10,002 --> 00:15:12,082
+this function, everything happens just
+like before.
+
+198
+00:15:12,082 --> 00:15:17,043
+The labels are put in, the, the tick marks
+are put in the margins are specified,
+
+199
+00:15:17,043 --> 00:15:21,098
+everything is there, except for the data.
+So, the only thing that's missing is the
+
+200
+00:15:21,098 --> 00:15:23,532
+data.
+And so, what I'm going to do is I'm going
+
+201
+00:15:23,532 --> 00:15:28,708
+to add the data, add one group at a time.
+So, let's say, I add the males first,
+
+202
+00:15:28,708 --> 00:15:33,005
+like, say, point x.
+Then, I'm going to subset the vectors that
+
+203
+00:15:33,005 --> 00:15:36,512
+the g, I only take the points, where g is
+equal to male, right?
+
+204
+00:15:36,512 --> 00:15:40,586
+So, that's a subset.
+And then, I'm going to say y, and g is
+
+205
+00:15:40,586 --> 00:15:43,815
+equal to male.
+So, this is only going to plot the, plot
+
+206
+00:15:43,815 --> 00:15:48,039
+the points where, where the values of g
+variable equal to males.
+
+207
+00:15:48,039 --> 00:15:53,440
+I'm going to set, make that color green,
+okay?
+
+208
+00:15:53,440 --> 00:15:58,200
+So now, you can see the points on the, on
+the screen are green.
+
+209
+00:15:58,200 --> 00:16:01,420
+Those are, those represent the male points
+only.
+
+210
+00:16:01,630 --> 00:16:04,705
+So I can do the same thing for the
+females.
+
+211
+00:16:04,705 --> 00:16:10,033
+I can say, points x and then g is equal to
+female and the yg is equal to female.
+
+212
+00:16:10,033 --> 00:16:16,087
+And let's say, I'll make these blue.
+So now, you can see that there are blue
+
+213
+00:16:16,087 --> 00:16:19,643
+circles for the females and there's green
+circles for the males.
+
+214
+00:16:19,643 --> 00:16:23,833
+And so, you can see the two groups
+separately within the scatter plot.
+
+215
+00:16:23,833 --> 00:16:28,661
+And so, sub setting based on a grouping
+variable is very common when a making
+
+216
+00:16:28,661 --> 00:16:30,845
+plots.
+And the points function can used to kind
+
+217
+00:16:30,845 --> 00:16:34,507
+of add points sequentially by group so
+that it can specify different types
+
+218
+00:16:34,507 --> 00:16:38,347
+properties for each group.
+You can also, in, in addition to varying
+
+219
+00:16:38,347 --> 00:16:41,517
+the color, I could have changed the
+plotting symbol, so I could have said pch
+
+220
+00:16:41,517 --> 00:16:45,011
+equal to, I'll say, nineteen.
+So, this is a kind of solid circle here,
+
+221
+00:16:45,011 --> 00:16:48,084
+and that would have given me a solid blue
+circle for the females, and an open green
+
+222
+00:16:48,084 --> 00:16:52,057
+circle for the males.
+So, that's one way to, to separate up
+
+223
+00:16:52,057 --> 00:16:55,077
+groups of data points on a single scatter
+plot.

@@ -1,0 +1,1184 @@
+
+1
+00:00:00,000 --> 00:00:02,068
+I'm going to talk about simulation in this
+lecture.
+
+2
+00:00:02,260 --> 00:00:07,036
+Simulation is a very important topic, for
+statistics and for a number of other
+
+3
+00:00:07,036 --> 00:00:10,010
+applications.
+So, I just want to introduce some of the
+
+4
+00:00:10,010 --> 00:00:13,022
+functions in R that can be useful for
+doing simulation.
+
+5
+00:00:13,022 --> 00:00:17,068
+So, there are a couple of functions that
+are available for simulating, numbers or
+
+6
+00:00:17,068 --> 00:00:20,037
+variables from, given probability
+distributions.
+
+7
+00:00:20,037 --> 00:00:23,081
+Probably the most important of which is
+the Normal distribution.
+
+8
+00:00:23,273 --> 00:00:28,358
+And so, we can generate, variance from the
+Normal distribution by specifying a mean
+
+9
+00:00:28,358 --> 00:00:33,207
+and a standard deviation for that
+distribution, and then calling the rnorm
+
+10
+00:00:33,207 --> 00:00:36,080
+function.
+So, the rnorm function will simulate
+
+11
+00:00:36,080 --> 00:00:41,034
+normal random variables, that from a
+distribution that has a given mean and
+
+12
+00:00:41,034 --> 00:00:43,925
+standard deviation.
+So the, there's a, there are corresponding
+
+13
+00:00:43,925 --> 00:00:48,515
+functions for the R, for the Normal
+distribution that can be used to evaluate
+
+14
+00:00:48,515 --> 00:00:52,935
+the probability density, to evaluate the
+cumulative distribution function, and for,
+
+15
+00:00:52,935 --> 00:00:55,054
+and also for evaluating the quantile
+function.
+
+16
+00:00:55,054 --> 00:00:59,095
+So, another function for generating random
+variables is the rpois function or the
+
+17
+00:00:59,095 --> 00:01:04,491
+which generates Poisson random variables,
+from a Poisson distribution with a given
+
+18
+00:01:04,491 --> 00:01:06,860
+rate.
+And so, the, so there are a number of
+
+19
+00:01:06,860 --> 00:01:11,704
+functions for generating random variables
+from the, from the kind of the standard
+
+20
+00:01:11,704 --> 00:01:16,094
+probability distributions, and you can use
+these, to do, to, to run simulations.
+
+21
+00:01:16,094 --> 00:01:20,085
+So, probability distribution functions,
+there are basically four functions
+
+22
+00:01:20,085 --> 00:01:23,796
+associated with them.
+And so, for any given distribution like
+
+23
+00:01:23,796 --> 00:01:27,089
+the Normal distribution, there will be a
+function that starts with a d.
+
+24
+00:01:27,089 --> 00:01:30,354
+A function that starts with an r or the p
+and a q.
+
+25
+00:01:30,354 --> 00:01:33,184
+So, it will be four different functions
+for each distribution.
+
+26
+00:01:33,184 --> 00:01:37,041
+So, we've already, I've already mentioned
+that there's the rnorm function.
+
+27
+00:01:37,041 --> 00:01:40,750
+So, the rnorm function is for generating
+the, is for random number generation.
+
+28
+00:01:40,907 --> 00:01:45,530
+There's a dnorm function which evaluates
+the density of the probability, distr-,
+
+29
+00:01:45,530 --> 00:01:48,370
+distribution for a given mean and standard
+deviation.
+
+30
+00:01:48,513 --> 00:01:52,868
+There's the pnorm function, which
+evaluates the cumulative distribution, and
+
+31
+00:01:52,868 --> 00:01:56,713
+there's the qnorm function, which
+evaluates the quantile function.
+
+32
+00:01:56,713 --> 00:02:00,041
+So, every distribution has, these four
+types of functions.
+
+33
+00:02:00,041 --> 00:02:05,160
+So, for the gamma distribution, there will
+be a d gamma, an r gamma, a p gamma, and a
+
+34
+00:02:05,160 --> 00:02:09,186
+q gamma function.
+And for the Poisson distribution, there's
+
+35
+00:02:09,186 --> 00:02:12,312
+the rpois, a dpois, a ppois, and qpois
+functions.
+
+36
+00:02:12,504 --> 00:02:17,145
+So, working with the Normal distribution,
+requires these four functions.
+
+37
+00:02:17,145 --> 00:02:22,101
+So, I mentioned the dnorm, pnorm, qnorm,
+and rnorm and you can see that each take a
+
+38
+00:02:22,101 --> 00:02:25,908
+number of different parameters.
+All of the functions required that you
+
+39
+00:02:25,908 --> 00:02:29,845
+specify the mean and the standard
+deviation because that's what specifies
+
+40
+00:02:29,845 --> 00:02:34,198
+the actual probability distribution.
+If you do not specify them and the default
+
+41
+00:02:34,198 --> 00:02:38,502
+values are a distribution, a standard
+Normal distribution which has a mean zero
+
+42
+00:02:38,502 --> 00:02:42,672
+and standard deviation one.
+For the dnorm function, the you, you can
+
+43
+00:02:42,672 --> 00:02:47,203
+evaluate the density, and there's an
+optional, there's an option that allows
+
+44
+00:02:47,203 --> 00:02:51,045
+you to evaluate the log of the density.
+Most of the time, when you evaluate the
+
+45
+00:02:51,045 --> 00:02:54,849
+density function for a Normal distribution
+you're going to want to use the log of
+
+46
+00:02:54,849 --> 00:02:57,055
+that value.
+But the default is false.
+
+47
+00:02:57,224 --> 00:03:01,065
+For the pnorm function and the qnorm
+function, there's also an option to
+
+48
+00:03:01,065 --> 00:03:04,089
+evaluate it on a log scale.
+But, but, but another option is to
+
+49
+00:03:04,089 --> 00:03:08,058
+evaluate the, is whether or not you want
+to evaluate the lower tail of the
+
+50
+00:03:08,058 --> 00:03:11,025
+distribution.
+So, the lower tail, which is the default,
+
+51
+00:03:11,025 --> 00:03:15,283
+is the, if you can think of it, if you
+look at the probability distribution, it's
+
+52
+00:03:15,283 --> 00:03:18,044
+the part that goes to the left.
+It's the lower tail.
+
+53
+00:03:18,044 --> 00:03:21,607
+If you wanted to evaluate the upper tail,
+sometimes you want to do this.
+
+54
+00:03:21,760 --> 00:03:24,061
+Then you want to say, lower tail equals
+false.
+
+55
+00:03:24,061 --> 00:03:27,064
+And that will evaluate the upper tail of
+the distribution.
+
+56
+00:03:27,256 --> 00:03:32,009
+And finally for rnorm, there's, only two
+parameters, mean and standard deviation.
+
+57
+00:03:32,009 --> 00:03:35,090
+And then N, which is number of random
+variables that you want to generate.
+
+58
+00:03:35,090 --> 00:03:39,786
+So, if N is 100, you'll get a vector of
+100 numbers that are drawn from the, from
+
+59
+00:03:39,786 --> 00:03:43,747
+the Normal distribution.
+So, just to be more explicit, if phi is
+
+60
+00:03:43,747 --> 00:03:47,412
+the cumulative distribution function for
+the standard normal distribution.
+
+61
+00:03:47,412 --> 00:03:52,091
+Then pnorm is equivalent to phi and qnorm
+is equivalent to the inverse of phi.
+
+62
+00:03:56,028 --> 00:04:00,078
+So, just quickly, if you want to generate
+some random normal, random normal
+
+63
+00:04:00,078 --> 00:04:05,085
+variants, you must call rnorm and pass an
+integer, which is the number of variables
+
+64
+00:04:05,085 --> 00:04:08,032
+you want to generate.
+So, here I'm passing ten.
+
+65
+00:04:08,204 --> 00:04:13,026
+And you can see that the vector that's
+produced, will be random normal, numbers
+
+66
+00:04:13,026 --> 00:04:16,022
+which have mean zero and standard
+deviation one.
+
+67
+00:04:16,219 --> 00:04:21,041
+If I want to generate a vector that had
+mean twenty and standard deviation two, I
+
+68
+00:04:21,041 --> 00:04:24,087
+just need to specify that explicitly in my
+call to rnorm.
+
+69
+00:04:24,087 --> 00:04:28,934
+So, here, this vector has a, is our ten
+random normal bid, sorry normal random
+
+70
+00:04:28,934 --> 00:04:34,059
+variables, and their mean is roughly
+twenty, and their standard deviation is
+
+71
+00:04:34,059 --> 00:04:37,080
+two.
+So, when anytime you simulate random
+
+72
+00:04:37,080 --> 00:04:41,051
+numbers, with, from any distribution, for
+any purpose.
+
+73
+00:04:41,051 --> 00:04:45,793
+It's very important that you set the
+random number generator seed.
+
+74
+00:04:46,014 --> 00:04:49,412
+And this could be done with the set.seed
+function.
+
+75
+00:04:49,412 --> 00:04:52,995
+So, what's important to know is that on
+computers, when you generate random
+
+76
+00:04:52,995 --> 00:04:55,327
+numbers, the numbers are not actually
+random.
+
+77
+00:04:55,455 --> 00:04:57,908
+But they appear random, and that's the
+important thing.
+
+78
+00:04:57,908 --> 00:05:02,114
+And, if so the idea is that if you wanted
+to generate the same set of random numbers
+
+79
+00:05:02,114 --> 00:05:05,962
+again, you could if you wanted to because
+the numbers are not actually random.
+
+80
+00:05:05,962 --> 00:05:09,672
+They're called, they're, they're what are
+called pseudo-random numbers.
+
+81
+00:05:09,839 --> 00:05:12,196
+And so, here I'm setting the seed to be
+one.
+
+82
+00:05:12,196 --> 00:05:15,861
+So, the seed can be any integer you want.
+You just pass it an integer and that's the
+
+83
+00:05:15,861 --> 00:05:18,074
+seed.
+So, here I'm gonna set seed equal to one,
+
+84
+00:05:18,074 --> 00:05:21,516
+and then I'm gonna generate five random,
+normal random variables.
+
+85
+00:05:21,696 --> 00:05:25,165
+And so here I've got my, my five normal
+random variables.
+
+86
+00:05:25,165 --> 00:05:28,249
+They have mean zero and standard deviation
+one.
+
+87
+00:05:28,429 --> 00:05:32,726
+If I generate another five, you'll see
+that the vector is totally different
+
+88
+00:05:32,726 --> 00:05:35,043
+because it's another random sample of
+five.
+
+89
+00:05:35,043 --> 00:05:38,571
+However, if I reset the seed to be one and
+I draw five again.
+
+90
+00:05:38,571 --> 00:05:43,004
+You'll see that they are exactly the same
+as the first five that I drew.
+
+91
+00:05:43,004 --> 00:05:46,574
+So anytime, so when you set the seed, it
+kind of sets the sequence of random
+
+92
+00:05:46,574 --> 00:05:50,823
+variables that's just going to occur and
+if you reset the seed you kind of set the
+
+93
+00:05:50,823 --> 00:05:54,644
+sequence to go back to where you started
+and that it will continue to, kind of
+
+94
+00:05:54,644 --> 00:05:58,804
+generate random variables from there.
+So, this is important because it allows
+
+95
+00:05:58,804 --> 00:06:02,006
+for you to reproduce random numbers that
+you generate.
+
+96
+00:06:02,006 --> 00:06:06,030
+Now, that might sound strange because why
+would you want to regenerate the same
+
+97
+00:06:06,030 --> 00:06:09,314
+random number twice.
+But in many applications, you do want to
+
+98
+00:06:09,314 --> 00:06:13,739
+generate the same random numbers twice so
+that people can reproduce what you've
+
+99
+00:06:13,739 --> 00:06:15,613
+done.
+And in particular, if there are some
+
+100
+00:06:15,613 --> 00:06:18,727
+errors or problems in what you've done,
+you want to be able to get just to kind
+
+101
+00:06:18,727 --> 00:06:22,040
+of, go back to the exact situation that
+produced those problems.
+
+102
+00:06:22,040 --> 00:06:26,299
+So, whenever you do a simulation, you
+always want to set the random number seed,
+
+103
+00:06:26,299 --> 00:06:29,037
+so that you can go back and get the same
+results.
+
+104
+00:06:31,177 --> 00:06:34,137
+So, I've demonstrated how to generate
+normal random variables.
+
+105
+00:06:34,137 --> 00:06:37,462
+But of course, you can generate, random
+variables from other probability
+
+106
+00:06:37,462 --> 00:06:40,321
+distributions.
+So, the Poisson distribution is of course
+
+107
+00:06:40,321 --> 00:06:43,062
+very popular.
+Here, I'm generating a, ten poisson random
+
+108
+00:06:43,062 --> 00:06:47,681
+variables with a rate of one.
+And, so, of course, Poisson data are going
+
+109
+00:06:47,681 --> 00:06:50,092
+to be integer.
+Here, I'm generating a pois-, ten Poisson
+
+110
+00:06:50,092 --> 00:06:54,097
+random variables at the rate of two.
+So, you can see they're slightly larger.
+
+111
+00:06:54,097 --> 00:06:59,336
+And then here, I'm generating a ten random
+variables, Poisson random variables with
+
+112
+00:06:59,336 --> 00:07:03,039
+a, with a rate of twenty.
+And so, so for the Poisson distribution,
+
+113
+00:07:03,039 --> 00:07:07,033
+the mean is gonna be equal to the rate.
+So, you can see that, roughly, in each of
+
+114
+00:07:07,033 --> 00:07:10,067
+three cases, the mean is roughly equal to
+the rate that I specified.
+
+115
+00:07:10,266 --> 00:07:15,005
+I could also evaluate the cumulative
+distribution, function, for the Poisson
+
+116
+00:07:15,005 --> 00:07:16,039
+distribution.
+So here, I'm.
+
+117
+00:07:16,239 --> 00:07:21,482
+In this first example, I want to know what
+is the probability that, a Poisson random
+
+118
+00:07:21,482 --> 00:07:25,025
+variable is less than or equal to two if
+the rate is two.
+
+119
+00:07:25,025 --> 00:07:27,049
+And so, this is the probability.
+It's.67, roughly.
+
+120
+00:07:27,064 --> 00:07:31,037
+If I want to know what's the probability
+that the, a Poisson random variable with
+
+121
+00:07:31,037 --> 00:07:33,095
+rate two is less than four, less than or
+equal to four.
+
+122
+00:07:33,095 --> 00:07:36,016
+You can see the probability is getting
+bigger.
+
+123
+00:07:36,016 --> 00:07:40,008
+And here, I can see the probability that a
+Poisson random variable is less than six,
+
+124
+00:07:40,008 --> 00:07:42,062
+less than or equal to six.
+And it's very close to one.
+
+125
+00:07:42,062 --> 00:07:47,012
+So, the cumulative distribution allows you
+to, to evaluate these probabilities.
+
+126
+00:07:49,054 --> 00:07:53,079
+Now, we talked about how to simulate
+random numbers from simple probability
+
+127
+00:07:53,079 --> 00:07:56,094
+distributions.
+But the question now is how, what if you
+
+128
+00:07:56,094 --> 00:08:00,093
+want to, assimilate data from a, from a
+model, for example like a linear model.
+
+129
+00:08:00,093 --> 00:08:03,036
+So, I've got a very simple linear model
+here.
+
+130
+00:08:03,222 --> 00:08:08,000
+It has a single predictor x and it's going
+to have random noise, what I call Epsilon,
+
+131
+00:08:08,000 --> 00:08:11,026
+that has a Normal distribution with
+standard deviation two.
+
+132
+00:08:11,237 --> 00:08:16,235
+There's the, the outcome Is going to be
+generated, by, by, by with using these two
+
+133
+00:08:16,235 --> 00:08:20,294
+regression coefficients about intercept
+beta naught and a slow beta one.
+
+134
+00:08:20,294 --> 00:08:25,043
+I'm going to assume that beta naught is
+equal to 0.5 and beta one is equal to two.
+
+135
+00:08:25,043 --> 00:08:28,826
+So, the question is how do I assimilate
+from this model now that I specified what
+
+136
+00:08:28,826 --> 00:08:31,170
+it is.
+So here, at first I set the seed.
+
+137
+00:08:31,170 --> 00:08:34,233
+Remember it's always very important to set
+that seed.
+
+138
+00:08:34,233 --> 00:08:37,087
+So, I set it to twenty.
+I generate x, the predictor which has a
+
+139
+00:08:37,087 --> 00:08:40,944
+standard normal distribution.
+I generate epsilon which is going to have
+
+140
+00:08:40,944 --> 00:08:44,634
+a standard, a normal distribution with
+mean zero and standard deviation two.
+
+141
+00:08:44,634 --> 00:08:49,084
+And then, I'm going to add them altogether
+by, and after multiplying the regression
+
+142
+00:08:49,084 --> 00:08:54,005
+coefficient to generate my y.
+And so, from the summary here, you'll see
+
+143
+00:08:54,005 --> 00:08:59,851
+that y has roughly the mean of .68.
+And it ha-, it ranges from about minus six
+
+144
+00:08:59,851 --> 00:09:03,038
+to plus six.
+And then I can plot the data to see what
+
+145
+00:09:03,038 --> 00:09:05,095
+they look like, and here they are on the
+next slide.
+
+146
+00:09:05,278 --> 00:09:10,050
+So this is the plot of the x that I
+simulated, and the y that I simulated from
+
+147
+00:09:10,050 --> 00:09:13,077
+the linear model.
+And you can see that they very clearly
+
+148
+00:09:13,077 --> 00:09:18,067
+have a linear relationship, according,
+that follows the model that we specified.
+
+149
+00:09:20,087 --> 00:09:24,786
+So, just a slight variation of the
+previous example, What if x is a, instead
+
+150
+00:09:24,786 --> 00:09:29,325
+of x being a normal random variable, what
+if X is a binary random variable.
+
+151
+00:09:29,325 --> 00:09:34,142
+So, maybe it represents, gender or maybe
+it's some treatment versus control or
+
+152
+00:09:34,142 --> 00:09:37,121
+something like that.
+So, here this is very simple.
+
+153
+00:09:37,121 --> 00:09:41,616
+I can generate binary data using the
+binomial distribution, and the r binome
+
+154
+00:09:41,616 --> 00:09:43,942
+function.
+So, I set the seed again, and I generate,
+
+155
+00:09:44,088 --> 00:09:49,029
+100 binomial random variables, and these
+are going to have, this is from, this
+
+156
+00:09:49,029 --> 00:09:53,070
+comes from the binomial distribution which
+is N equal to one and P equal to half.
+
+157
+00:09:53,070 --> 00:09:57,070
+So, the probability of one is gonna be
+equal to .5.
+
+158
+00:09:57,070 --> 00:10:01,060
+So, I generate 100 of those.
+And then I generate my normal random
+
+159
+00:10:01,060 --> 00:10:04,163
+variables.
+My normal error term, which is going to be
+
+160
+00:10:04,163 --> 00:10:06,563
+mean, be mean zero, and standard deviation
+two.
+
+161
+00:10:06,681 --> 00:10:09,037
+And then I add them all together to
+produce my y.
+
+162
+00:10:09,037 --> 00:10:14,079
+So now, when I look at the summary of y, I
+see the mean is about 1.4 and a range is
+
+163
+00:10:14,079 --> 00:10:18,214
+from about minus three to six or seven.
+So when I, now when I plot the data, of
+
+164
+00:10:18,214 --> 00:10:22,316
+course they'll look very different because
+the x variable is binary.
+
+165
+00:10:22,521 --> 00:10:26,011
+But the y variable is still continuous,
+it's normal.
+
+166
+00:10:26,011 --> 00:10:30,082
+So here, you can see that there's, there
+appears to be a pretty clear, again,
+
+167
+00:10:30,082 --> 00:10:35,039
+linear trend when x, between going from x
+equal to zero and x is equal to one.
+
+168
+00:10:35,086 --> 00:10:39,081
+Now, suppose you want to simulate from a
+slightly more complicated model a, a
+
+169
+00:10:39,081 --> 00:10:43,007
+generalized linear model, perhaps with a
+Poisson distribution.
+
+170
+00:10:43,007 --> 00:10:47,018
+And so, for example, you might want to
+simulate some outcome data that have, that
+
+171
+00:10:47,018 --> 00:10:49,096
+are count variables instead of continuous
+variables.
+
+172
+00:10:49,096 --> 00:10:53,059
+So, we have to use, use a slightly more
+complicated approach to do this
+
+173
+00:10:53,075 --> 00:10:57,023
+particular, because the error distribution
+is not going to be normal.
+
+174
+00:10:57,023 --> 00:11:01,028
+It's going to be a Poisson distribution.
+And so, let's assume that the outcome y
+
+175
+00:11:01,028 --> 00:11:05,050
+has a Poisson distribution with mean mu,
+and, and the log of mu follows a linear
+
+176
+00:11:05,050 --> 00:11:08,519
+model with a intercept, beta naught and
+the a slope beta one.
+
+177
+00:11:08,519 --> 00:11:10,746
+So, x is going to be one of our
+predictors.
+
+178
+00:11:10,746 --> 00:11:13,782
+So, let's assume that beta naught is .5,
+and beta one is .3.
+
+179
+00:11:13,782 --> 00:11:17,033
+So, how do we simulate from this model, to
+get our Poisson data?
+
+180
+00:11:17,033 --> 00:11:19,612
+So, so we need to use the rpois function
+for this.
+
+181
+00:11:19,787 --> 00:11:24,534
+And so, we first set the seed as always.
+And we generate our predictor variable, x,
+
+182
+00:11:24,534 --> 00:11:27,677
+which is going to have a standard normal
+distribution.
+
+183
+00:11:27,832 --> 00:11:31,410
+Then we're going to simulate, generate our
+lin-, linear predictor, log of mu.
+
+184
+00:11:31,542 --> 00:11:35,008
+Which is just adding the slope and, and
+the, the intercept and the slope
+
+185
+00:11:35,008 --> 00:11:38,162
+coefficient times x.
+So, that's the log of our linear
+
+186
+00:11:38,162 --> 00:11:41,424
+predictor.
+But when, in order to get the mean for our
+
+187
+00:11:41,424 --> 00:11:44,057
+Poisson random variable, we need to
+exponentiate that.
+
+188
+00:11:44,057 --> 00:11:49,205
+So we, we simulate a hundred of these,
+Poisson random variables, using the rpois
+
+189
+00:11:49,205 --> 00:11:53,190
+function, and we give it the ex-,
+exponential of our log mean.
+
+190
+00:11:53,403 --> 00:11:57,705
+So when we, summarize this, you'll see
+that the mean is about, 1.5.
+
+191
+00:11:57,891 --> 00:12:02,266
+And it ranges between zero and six.
+When I plot this data, you'll see that,
+
+192
+00:12:02,440 --> 00:12:06,222
+they look like Poisson data.
+And that there's clearly a linear
+
+193
+00:12:06,222 --> 00:12:10,409
+relationship between x and y.
+As x increases the count for y generally
+
+194
+00:12:10,409 --> 00:12:13,881
+gets larger.
+But the data are still account variables
+
+195
+00:12:13,881 --> 00:12:19,777
+here.
+So, last function I want to talk about, is
+
+196
+00:12:19,777 --> 00:12:23,201
+the sample function.
+And the way, and the sample function
+
+197
+00:12:23,201 --> 00:12:28,196
+allows you to draw randomly from a
+specific set of objects, that you specify.
+
+198
+00:12:28,196 --> 00:12:33,155
+So, if you give it a vector of numbers, it
+allows to draw a random sample from that
+
+199
+00:12:33,155 --> 00:12:37,083
+vector of numbers.
+And so you can kind of create any
+
+200
+00:12:37,083 --> 00:12:41,879
+arbitrary distribution that you want by
+specifying a vector of objects and then
+
+201
+00:12:41,879 --> 00:12:44,808
+sampling from it.
+So here, for example, I'm going to sample
+
+202
+00:12:44,808 --> 00:12:48,397
+from the integers one to ten.
+So, I pass it the vector of integers one
+
+203
+00:12:48,397 --> 00:12:51,872
+through ten.
+And I tell it that I wanna sample randomly
+
+204
+00:12:51,872 --> 00:12:55,903
+four of them without replacement.
+So, so, I'm just choosing four random
+
+205
+00:12:55,903 --> 00:12:59,069
+entries from one to ten.
+And here, I get three, four, five, seven.
+
+206
+00:12:59,069 --> 00:13:01,756
+If I do it again, I'll get, three, nine,
+eight, five.
+
+207
+00:13:01,756 --> 00:13:06,384
+So, in this example, I, I won't, I won't
+get repeated numbers, because I'm not
+
+208
+00:13:06,384 --> 00:13:10,071
+sampling with replacement.
+I don't have to just sample numbers.
+
+209
+00:13:10,071 --> 00:13:14,878
+I could sample letters if I wanted to.
+So here, I'm taking the letters a through
+
+210
+00:13:14,878 --> 00:13:17,010
+z.
+And I was going to sample five of them
+
+211
+00:13:17,010 --> 00:13:19,733
+without replacement.
+And I just get q, b, e, x, and p.
+
+212
+00:13:19,909 --> 00:13:22,423
+Now, what happens if I don't specify
+anything?
+
+213
+00:13:22,423 --> 00:13:27,406
+I just give it the vector of objects.
+So here, as passing sample, the vector one
+
+214
+00:13:27,406 --> 00:13:28,189
+through.
+Ten.
+
+215
+00:13:28,189 --> 00:13:32,640
+And if I don't specify anything else, what
+it does is it gives me a permutation of
+
+216
+00:13:32,640 --> 00:13:35,082
+those.
+So, here the vector, one through ten is
+
+217
+00:13:35,082 --> 00:13:38,755
+just permutted in a random order.
+If I call it again, I get a, I get yet
+
+218
+00:13:38,755 --> 00:13:42,066
+again permutation.
+So, lastly I want to sample from one
+
+219
+00:13:42,066 --> 00:13:46,508
+through ten, but with replacement, I can
+specify the replacement equals true
+
+220
+00:13:46,508 --> 00:13:49,363
+argument.
+So now, I'm sampling one through ten.
+
+221
+00:13:49,363 --> 00:13:54,042
+I'm getting a vector of ten numbers from
+the vector one through ten, but because
+
+222
+00:13:54,042 --> 00:13:58,217
+it's with replacement, I can get repeat.
+So, you can see I got eight, three times,
+
+223
+00:13:58,217 --> 00:14:02,346
+and I got nine, multiple times.
+So, that's how you sample with the
+
+224
+00:14:02,346 --> 00:14:08,007
+placement.
+So, that's a very quick summary of the
+
+225
+00:14:08,007 --> 00:14:11,089
+simulation functions in R.
+You can draw random samples from specific
+
+226
+00:14:11,089 --> 00:14:14,058
+probability distributions, with the R
+functions.
+
+227
+00:14:14,058 --> 00:14:16,844
+So, rnorm, R plus.
+Or sorry, rpois, rbinom that we saw
+
+228
+00:14:16,844 --> 00:14:18,945
+already.
+All the standard distributions are going
+
+229
+00:14:18,945 --> 00:14:22,038
+to be built in that you have, probably,
+you will need.
+
+230
+00:14:22,038 --> 00:14:26,047
+Things like normal, the Poisson, the
+binomial, the exponential gamma, etcetera.
+
+231
+00:14:26,047 --> 00:14:30,018
+All those functions are built in.
+And you can use the corresponding R
+
+232
+00:14:30,018 --> 00:14:34,021
+functions, to simulate from them.
+The sample function can be used to draw,
+
+233
+00:14:34,182 --> 00:14:38,057
+random samples from arbitrary vectors.
+So, if you want to kind of create your own
+
+234
+00:14:38,057 --> 00:14:40,019
+distribution here.
+And then.
+
+235
+00:14:40,019 --> 00:14:44,066
+It's very important to, to remember to set
+the random number generator seed any time
+
+236
+00:14:44,066 --> 00:14:48,075
+you simulate data in R, so that you can
+reproduce the results that you got.
+
+237
+00:14:48,075 --> 00:14:50,020
+At a later date.

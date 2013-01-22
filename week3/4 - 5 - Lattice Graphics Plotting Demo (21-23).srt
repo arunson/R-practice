@@ -1,0 +1,1455 @@
+
+1
+00:00:00,000 --> 00:00:04,020
+In this video I want to talk a little bit
+about using the Lattice package in R.
+
+2
+00:00:04,036 --> 00:00:08,077
+The way that you use the Lattice package
+is a little bit different from, say, the
+
+3
+00:00:08,077 --> 00:00:12,039
+base plotting functions that you use in
+the base plotting system.
+
+4
+00:00:12,039 --> 00:00:16,065
+And so I want to talk a little bit about
+how you kind of write the code to make the
+
+5
+00:00:16,065 --> 00:00:20,064
+plots that you want to use.
+So, when using the Lattice package, it's
+
+6
+00:00:20,064 --> 00:00:24,074
+often useful to have a separate editor
+open to write code, because the, the
+
+7
+00:00:24,074 --> 00:00:28,333
+function calls to the Lattice function
+tend to be a little bit more involved, and
+
+8
+00:00:28,333 --> 00:00:33,182
+it's hard to fit them all, or it's a
+little inconvenient to fit them all into a
+
+9
+00:00:33,182 --> 00:00:36,141
+single line.
+In the base graphic system, a lot of times
+
+10
+00:00:36,141 --> 00:00:40,177
+you're, you're calling single functions,
+and you're calling a whole bunch of
+
+11
+00:00:40,177 --> 00:00:44,226
+functions to make a single plot.
+In the, the lattice package you are just
+
+12
+00:00:44,226 --> 00:00:47,665
+usually calling one or maybe two
+functions, and the, and the one function
+
+13
+00:00:47,665 --> 00:00:51,392
+call will set up, although, an entire
+plot, so often you'll have a really long
+
+14
+00:00:51,392 --> 00:00:54,420
+function call.
+And it's easier to have an editor window
+
+15
+00:00:54,420 --> 00:00:58,264
+open to write all that code.
+Here I'm using R Studio, and in the upper
+
+16
+00:00:58,264 --> 00:01:01,746
+left I've got the editor window.
+And in the bottom left here I've got the
+
+17
+00:01:01,746 --> 00:01:05,478
+console.
+Other, other programs are fine for using a
+
+18
+00:01:05,478 --> 00:01:09,499
+text editor if you want, if you want to
+use the standard R console.
+
+19
+00:01:09,499 --> 00:01:13,432
+But R Studio is actually quite helpful for
+this kind of thing.
+
+20
+00:01:13,432 --> 00:01:18,277
+So the first thing you can do is load the
+library, the lattice package like this in
+
+21
+00:01:18,277 --> 00:01:21,519
+the usual way.
+Excuse me, and if you want to take a look
+
+22
+00:01:21,519 --> 00:01:26,922
+at some general information about lattice
+say package lattice, package question mark
+
+23
+00:01:26,922 --> 00:01:30,435
+lattice, that is.
+And at least in our studio over here
+
+24
+00:01:30,435 --> 00:01:35,331
+you'll see a nice little description of
+the lattice package, with some general
+
+25
+00:01:35,331 --> 00:01:38,534
+information.
+Some references and some links to all of
+
+26
+00:01:38,534 --> 00:01:42,844
+the functions in the lattice package that
+you may want to look at.
+
+27
+00:01:42,844 --> 00:01:48,584
+The most important function in the lattice
+package really is the XY plot function so
+
+28
+00:01:48,584 --> 00:01:52,558
+I'll click on that here.
+And the XY plot function gives you a long
+
+29
+00:01:52,558 --> 00:01:57,627
+list of arguments and options that can be
+passed to the function and a description
+
+30
+00:01:57,627 --> 00:02:03,304
+of all those arguments.
+So I'm going to move on and start plotting
+
+31
+00:02:03,304 --> 00:02:07,173
+some data.
+So the first thing we're gonna do is we're
+
+32
+00:02:07,173 --> 00:02:10,499
+gonna see what's in the lattice package
+here.
+
+33
+00:02:10,499 --> 00:02:16,854
+And you can see that there are number of
+functions and data sets available here.
+
+34
+00:02:16,854 --> 00:02:22,246
+And the one data set we're going to look
+at is the environmental data set here.
+
+35
+00:02:22,246 --> 00:02:26,994
+So I'm going to load that data set for us
+to use here.
+
+36
+00:02:26,994 --> 00:02:35,211
+So, I'm loading the environmental data
+set.
+
+37
+00:02:35,211 --> 00:02:39,308
+And, of course, you can always get the
+help page for each data set.
+
+38
+00:02:39,308 --> 00:02:44,028
+So I can take a look at that here.
+And you can see it's environmental,
+
+39
+00:02:44,028 --> 00:02:46,848
+conditions in New York City in 197-,
+September.
+
+40
+00:02:46,848 --> 00:02:49,769
+Sorry, excuse me.
+May to September of 1973.
+
+41
+00:02:49,769 --> 00:02:53,934
+You have information about ozone,
+radiation, temperature and, wind.
+
+42
+00:02:53,934 --> 00:02:57,711
+So, and, and, of course, there's, other
+variables for the dates.
+
+43
+00:02:57,711 --> 00:03:02,695
+So, we've loaded this data set here.
+So let's just take a look at the first
+
+44
+00:03:02,695 --> 00:03:07,649
+couple of rows here.
+You can see down at the console here the
+
+45
+00:03:07,649 --> 00:03:10,663
+ozone radiation temperature and wind
+variables.
+
+46
+00:03:10,663 --> 00:03:15,780
+And so I'm going to simple, make a simple
+scatter plot of ozone and radiation.
+
+47
+00:03:15,780 --> 00:03:20,877
+So the way you do this is with the XY plot
+function, and it's backwards from the
+
+48
+00:03:20,877 --> 00:03:24,851
+usual plotting function.
+So instead of doing X and Y, you're going
+
+49
+00:03:24,851 --> 00:03:28,598
+to do Y tilt to X.
+So on the Y axis I want ozone, and on the
+
+50
+00:03:28,598 --> 00:03:32,899
+X axis I want radiation.
+So I'm going to do that, do it this way
+
+51
+00:03:32,899 --> 00:03:36,004
+here.
+So it's kind of like a response and a
+
+52
+00:03:36,004 --> 00:03:39,068
+predictor.
+And then you also have to give it a data
+
+53
+00:03:39,068 --> 00:03:45,008
+argument, which tells the function xy plot
+where to find the variables ozone and
+
+54
+00:03:45,008 --> 00:03:48,008
+radiation.
+Because ozone and radiation are not
+
+55
+00:03:48,008 --> 00:03:52,037
+objects in my work space.
+They are variables in this data frame.
+
+56
+00:03:52,037 --> 00:03:57,052
+So what xy plot will do, is it'll look up
+those, names inside this data frame.
+
+57
+00:03:58,084 --> 00:04:02,800
+Close that, and you can see that the
+function is called, and plot appears in
+
+58
+00:04:02,800 --> 00:04:06,050
+the right, here.
+And, looks like a standard scatter plot,
+
+59
+00:04:06,050 --> 00:04:10,075
+nothing, may be slightly different from
+the usual plotting function.
+
+60
+00:04:10,094 --> 00:04:16,011
+I can see that, actually a lot of the,
+spacing has been arranged for you, so that
+
+61
+00:04:16,011 --> 00:04:21,016
+the plot goes more or less to the edges,
+it doesn't waste any space on the edges.
+
+62
+00:04:21,034 --> 00:04:26,045
+You have to set any spacing options, so I
+could have done some thing like xy plot
+
+63
+00:04:26,045 --> 00:04:35,184
+and then add a little title to it.
+So maybe I'll say main equals ozone,
+
+64
+00:04:35,184 --> 00:04:40,052
+versus radiation.
+And if I run that, you'll see that the
+
+65
+00:04:40,052 --> 00:04:43,079
+plot is made, but the title is added to
+the top.
+
+66
+00:04:43,079 --> 00:04:49,014
+And notice that the, that the, the
+plotting region was squished down just a
+
+67
+00:04:49,014 --> 00:04:53,037
+tiny little bit, so that the title could
+be, fit into there.
+
+68
+00:04:53,058 --> 00:04:59,000
+But just, only enough room was made to
+create the title so as to not waste any
+
+69
+00:04:59,000 --> 00:04:59,076
+space.
+Okay.
+
+70
+00:04:59,076 --> 00:05:03,072
+So, there's another variable here which is
+temperature.
+
+71
+00:05:03,072 --> 00:05:14,095
+So I could plot temperature here.
+And this is what it looks like here.
+
+72
+00:05:14,095 --> 00:05:18,079
+So nothing special.
+But of course one of the things that,
+
+73
+00:05:18,079 --> 00:05:24,013
+that, that the lattice package function
+excels at is allowing you to plot, kind of
+
+74
+00:05:24,013 --> 00:05:28,182
+multivariate, or lattice, type plots, so,
+which allow you to look at the
+
+75
+00:05:28,182 --> 00:05:32,575
+relationships between variables, when you
+condition on the levels of another
+
+76
+00:05:32,575 --> 00:05:35,770
+variable.
+So for example, on this plot up here, we
+
+77
+00:05:35,770 --> 00:05:40,265
+will look at ozone and radiation.
+One of the questions you might want to
+
+78
+00:05:40,265 --> 00:05:44,913
+know is whether or not the relationship
+between ozone and radiation changes as the
+
+79
+00:05:44,913 --> 00:05:48,076
+temperature changes.
+So first thing you'll notice in this plot
+
+80
+00:05:48,076 --> 00:05:52,729
+is that there's kind of a cone shape to
+it, and as the radiation increases the,
+
+81
+00:05:52,729 --> 00:05:55,032
+the variability in ozone seems to
+increase.
+
+82
+00:05:55,032 --> 00:05:59,439
+So one thing that maybe, one thing that
+maybe going on here is that there's an
+
+83
+00:05:59,439 --> 00:06:03,735
+interaction with the third variable, maybe
+temperature which modifies the
+
+84
+00:06:03,735 --> 00:06:07,021
+relationship between ozone and radiation
+in the background.
+
+85
+00:06:07,021 --> 00:06:11,057
+And so we can plot the relationship
+between ozone and radiation for different
+
+86
+00:06:11,057 --> 00:06:16,556
+values of the temperature variable to see
+if that rela-, relationship is changing
+
+87
+00:06:16,556 --> 00:06:20,006
+with temperature.
+So the first, that's, so temperature
+
+88
+00:06:20,006 --> 00:06:29,202
+continuous variable, as you'll see here,
+so you can't exactly condition on the
+
+89
+00:06:29,202 --> 00:06:35,015
+levels of temperature, because there are
+theoretically infinite number of levels of
+
+90
+00:06:35,015 --> 00:06:37,829
+temperature.
+So, what we're going to want to do is cut
+
+91
+00:06:37,829 --> 00:06:41,068
+the temperature variable into a few
+different, ranges.
+
+92
+00:06:41,068 --> 00:06:46,052
+And then we'll plot the ozone and
+radiation relationship within those ranges
+
+93
+00:06:46,052 --> 00:06:50,028
+of temperature.
+So I'm going to create a, another variable
+
+94
+00:06:50,028 --> 00:06:56,045
+here, called Temp, Cut, which is going to
+be the, I'm going to use the equal count
+
+95
+00:06:56,045 --> 00:07:00,030
+function on the original temperature
+variable.
+
+96
+00:07:00,095 --> 00:07:06,253
+And I'm going to give, what I'm going to
+do is I'm going to create four different
+
+97
+00:07:06,253 --> 00:07:12,050
+ranges of the temperature, of the original
+temperature variable, so that I can use
+
+98
+00:07:12,050 --> 00:07:16,646
+this in my plotting.
+So when I call this, and I print out the
+
+99
+00:07:16,646 --> 00:07:22,549
+new variable, you'll see that what it does
+is create, it creates what is called a
+
+100
+00:07:22,549 --> 00:07:26,970
+shingle variable, and the shingles here
+are, are different intervals that are
+
+101
+00:07:26,970 --> 00:07:30,067
+slightly overlapping.
+So you see the first interval goes from
+
+102
+00:07:30,067 --> 00:07:34,088
+56.5 to 76.5 degrees Fahrenheit.
+And there are 46 observations in that
+
+103
+00:07:34,088 --> 00:07:39,066
+range and in the next shingle goes from
+67.5 to 81.5, there's 51 observations in
+
+104
+00:07:39,066 --> 00:07:42,060
+that range.
+And you can see that in the first range
+
+105
+00:07:42,060 --> 00:07:47,044
+and the second range overlap just a little
+bit and then in the third range which
+
+106
+00:07:47,044 --> 00:07:51,002
+overlaps with the second it's 75.5 to 86.5
+degrees Fahrenheit.
+
+107
+00:07:51,002 --> 00:07:54,087
+Again there's 51 observations.
+And then the last shingle also has 51
+
+108
+00:07:54,087 --> 00:07:58,028
+observations.
+So this function created four ranges of
+
+109
+00:07:58,028 --> 00:08:01,062
+the temperature variable, all of which
+overlap slightly.
+
+110
+00:08:01,062 --> 00:08:06,000
+And, and have equal, roughly equal numbers
+of observations in them.
+
+111
+00:08:06,000 --> 00:08:11,479
+So now what we're going to do up at the
+top here, so I'm going to plot the ozone
+
+112
+00:08:11,479 --> 00:08:17,026
+and radiation data, but I'm going to
+condition on the ranges of this temp
+
+113
+00:08:17,026 --> 00:08:18,038
+variable.
+Okay.
+
+114
+00:08:18,038 --> 00:08:24,349
+And so know what it-, you'll see is now
+I've created a lattice plot here, where
+
+115
+00:08:24,349 --> 00:08:28,662
+each of the four plot, there, of the four
+plots here, plots ozone versus radiation,
+
+116
+00:08:28,662 --> 00:08:33,717
+but for a different range of temperatures.
+So on the bottom left over here, this is
+
+117
+00:08:33,717 --> 00:08:37,101
+the rel-, this, these are, there is 46
+observations here.
+
+118
+00:08:37,101 --> 00:08:41,379
+I'm looking at ozone and temp-, and
+radiation for the kind of range of
+
+119
+00:08:41,379 --> 00:08:45,190
+temperature that's between 56.5 and 76.5
+degrees Fahrenheit.
+
+120
+00:08:45,190 --> 00:08:49,946
+And you can see, actually that's there
+almost no relationship between ozone and
+
+121
+00:08:49,946 --> 00:08:55,587
+radiation, in this temperature ring.
+This is a fairly cool, temperature range.
+
+122
+00:08:55,587 --> 00:09:00,533
+So one thing that's, that we know about
+ozone is that, it's, the, the production
+
+123
+00:09:00,533 --> 00:09:03,968
+of ozone is related to the temperature.
+So, the warmer the temperature, the more
+
+124
+00:09:03,968 --> 00:09:06,080
+ozone you're going to get in the
+atmosphere.
+
+125
+00:09:06,080 --> 00:09:10,056
+So perhaps we should expect that in the
+cooler range of temperature, we're not
+
+126
+00:09:10,056 --> 00:09:13,049
+gonna see much of a relationship between
+radiation and ozone.
+
+127
+00:09:13,063 --> 00:09:17,053
+As to now, in the second range here, we
+see, that, that there is a, not much of a
+
+128
+00:09:17,053 --> 00:09:21,023
+relationship between ozone temperatures,
+though there are a few outliers here.
+
+129
+00:09:21,038 --> 00:09:25,037
+And then as you increase the temperature
+in the third plot here of an, on the upper
+
+130
+00:09:25,037 --> 00:09:29,066
+left, you see that there's a, there's an
+increasing relationship with radiation.
+
+131
+00:09:29,066 --> 00:09:31,185
+And then, in the fourth plot here, you
+see.
+
+132
+00:09:31,185 --> 00:09:35,638
+Even more of a relationship between ozone
+and radiation for the last temperature
+
+133
+00:09:35,638 --> 00:09:39,331
+range, which is between 80.5 and 97.5
+degrees Fahrenheit.
+
+134
+00:09:39,331 --> 00:09:44,591
+And so the, the, the x, y plot function is
+useful for making these kind of
+
+135
+00:09:44,591 --> 00:09:48,486
+conditioning plots.
+Where we plot the relationship between two
+
+136
+00:09:48,486 --> 00:09:51,721
+variables.
+And by con-, and condition on the levels
+
+137
+00:09:51,721 --> 00:09:55,606
+of a third variable.
+In this case, the temperature variable
+
+138
+00:09:55,606 --> 00:09:58,331
+which we've cut into four different
+ranges.
+
+139
+00:09:58,331 --> 00:10:02,948
+There are a few other things that we can
+do to this plot just to make, re-arrange
+
+140
+00:10:02,948 --> 00:10:06,939
+it a little bit, just in case you don't
+like the default layout.
+
+141
+00:10:06,939 --> 00:10:11,215
+For example we can we can change the
+order, arrangement of the plot so if the
+
+142
+00:10:11,215 --> 00:10:15,990
+default arrangement goes from the bottom
+left to the bottom right to the top left
+
+143
+00:10:15,990 --> 00:10:19,623
+to the top right.
+If you don't like that, you can, you can
+
+144
+00:10:19,623 --> 00:10:24,869
+change it, so that, for example, we can
+have four on top each other.
+
+145
+00:10:24,869 --> 00:10:29,440
+So we can say layout is one, four, and
+then when we do this.
+
+146
+00:10:29,440 --> 00:10:34,312
+So you'll see there are four different
+plots, all on top of each other and now
+
+147
+00:10:34,312 --> 00:10:38,169
+you can see perhaps a little bit more
+clearly, that the ranges of the
+
+148
+00:10:38,169 --> 00:10:42,138
+temperature are overlapping slightly.
+And, and exact roughly speaking kind of
+
+149
+00:10:42,138 --> 00:10:46,427
+where, how they relate to each other.
+We can also change the order in which the
+
+150
+00:10:46,427 --> 00:10:50,655
+plots are drawn, so instead of say for
+example from bottom to top, which is the
+
+151
+00:10:50,655 --> 00:10:55,516
+default, we can draw the plots from top to
+bottom by simply adding the as.table
+
+152
+00:10:55,516 --> 00:11:01,048
+argument, saying as.table equals true and
+that will give us the, the reverse order.
+
+153
+00:11:01,048 --> 00:11:06,028
+So now you can see that the, the plot for
+the bottom temperature range is on the
+
+154
+00:11:06,028 --> 00:11:10,012
+plot, is on the top, and the temperature
+increases as you go down.
+
+155
+00:11:10,030 --> 00:11:14,091
+You can do this also without the, if you
+wanted the, if you liked the original
+
+156
+00:11:14,091 --> 00:11:20,007
+layout with the four plots as in a square,
+you can do that, and now you can see that
+
+157
+00:11:20,007 --> 00:11:23,073
+the, the plot goes from the top left down
+to the bottom right.
+
+158
+00:11:23,073 --> 00:11:29,044
+Another thing that might be useful to do
+for visualization purposes is to actually
+
+159
+00:11:29,044 --> 00:11:34,080
+plot the relationship between solar
+radiation and ozone within each of the
+
+160
+00:11:34,080 --> 00:11:38,066
+panels.
+And the way we can do this is to write our
+
+161
+00:11:38,066 --> 00:11:43,006
+own panel function here.
+So what I'm going to do is I'm going to
+
+162
+00:11:43,006 --> 00:11:48,085
+edit this call here, and I'm going to add
+a, my own panel function here so and I'm
+
+163
+00:11:48,085 --> 00:11:53,005
+just going to do.
+So the typical panel function has x for
+
+164
+00:11:53,005 --> 00:11:57,046
+the x coordinates, and y for the y
+coordinates, so you can think of these as
+
+165
+00:11:57,046 --> 00:11:59,099
+the x and the y coordinates for each
+panel.
+
+166
+00:11:59,099 --> 00:12:03,040
+So the same function is going to be
+applied to each panel.
+
+167
+00:12:03,040 --> 00:12:07,005
+And so it has to work for the data in each
+of the four panels.
+
+168
+00:12:07,005 --> 00:12:10,810
+And then the dot, dot, dot argument is all
+of the other graphics parameters that
+
+169
+00:12:10,810 --> 00:12:15,474
+would normally be passed to the default
+panel function, which I'm not going to
+
+170
+00:12:15,474 --> 00:12:19,571
+modify at all.
+So now I've got my, I'm going to write my
+
+171
+00:12:19,571 --> 00:12:23,052
+custom panel function.
+And the first thing I'm going to do is
+
+172
+00:12:23,052 --> 00:12:27,073
+call the default panel function.
+And the reason why is I want to be able to
+
+173
+00:12:27,073 --> 00:12:32,006
+set up a plotting region, I want to be
+able to set the plot symbol, the colors,
+
+174
+00:12:32,006 --> 00:12:35,032
+the labels, everything.
+None of that is something I want to
+
+175
+00:12:35,032 --> 00:12:38,075
+change, all I want to do is add a
+regression line to the plot.
+
+176
+00:12:38,075 --> 00:12:42,057
+So now I've got my plot set up.
+I can fit a simple linear regression
+
+177
+00:12:42,057 --> 00:12:47,029
+model, which is using the LM function of Y
+tilde X and then I can add the line.
+
+178
+00:12:47,029 --> 00:12:50,053
+To the plot with the panel.ad line
+function.
+
+179
+00:12:50,053 --> 00:12:55,081
+And just give it the fit, output from LM,
+and that's it.
+
+180
+00:12:55,081 --> 00:13:01,891
+So that's my custom, panel function here.
+So now, I'm going to call, I'm going to
+
+181
+00:13:01,891 --> 00:13:06,823
+run this whole block of code.
+Excuse me, and when I do you, will see
+
+182
+00:13:06,823 --> 00:13:11,585
+that in each of the panels a regression
+line is overlaid on to the data which is
+
+183
+00:13:11,585 --> 00:13:15,139
+the, kind of regression fit to the data
+within that panel.
+
+184
+00:13:15,139 --> 00:13:20,552
+And as you can see, the regression line is
+relatively flat in the upper left panel.
+
+185
+00:13:20,552 --> 00:13:26,074
+And as you go to the upper right to the
+lower left and then to the lower right the
+
+186
+00:13:26,074 --> 00:13:29,393
+slope of the line is increasing as you go
+along.
+
+187
+00:13:29,393 --> 00:13:35,045
+You can use some of the standard plotting,
+options if you want to modify the, the,
+
+188
+00:13:35,045 --> 00:13:40,025
+the plotting, in the, within each panel.
+For example, if you wanted to make the
+
+189
+00:13:40,025 --> 00:13:43,245
+line a little bit thicker, you can say LWD
+is equal to two.
+
+190
+00:13:43,248 --> 00:13:48,266
+And maybe, let's say you wanted to change
+the plotting symbol to be a solid circle,
+
+191
+00:13:48,266 --> 00:13:53,046
+so I can just in the call to x, y plot, to
+see if PC is equal to twenty.
+
+192
+00:13:53,050 --> 00:13:57,010
+That will give me a solid circle.
+So now I'm going to run this code.
+
+193
+00:13:57,027 --> 00:14:01,055
+You'll see that the plotting symbol has
+changed, and the regression line's a
+
+194
+00:14:01,055 --> 00:14:04,099
+little bit thicker.
+And so you can modify this to, until it
+
+195
+00:14:04,099 --> 00:14:09,002
+looks the way you want it to look.
+You can see why you might want to use the
+
+196
+00:14:09,002 --> 00:14:11,088
+text editor now when you're using the
+lattice package.
+
+197
+00:14:11,088 --> 00:14:16,044
+Because the function calls to things like
+xy plot, to, can get very quickly
+
+198
+00:14:16,060 --> 00:14:20,280
+complicated, just because you're
+customizing things, and you're adding your
+
+199
+00:14:20,280 --> 00:14:24,007
+own panel function and whatever.
+All of it under the same function call.
+
+200
+00:14:24,007 --> 00:14:26,891
+So I'm just going to add, maybe just, one
+modification here.
+
+201
+00:14:26,891 --> 00:14:31,301
+Instead of doing a linear model, I'm going
+to use a low s, which is just a smoother.
+
+202
+00:14:31,301 --> 00:14:36,208
+So I can do, panel, excuse me.
+Panel low e-, panel low s here.
+
+203
+00:14:36,208 --> 00:14:41,810
+On xy, and that will get me a smooth
+rendition of the line.
+
+204
+00:14:41,810 --> 00:14:47,017
+So now you can see that actually, the, in
+the lower right, which is the high
+
+205
+00:14:47,017 --> 00:14:51,920
+temperature range, the relationship
+appears to be a little bit non linear
+
+206
+00:14:51,920 --> 00:14:57,814
+there, which an increase, with, with
+radiation, but then a decrease at the very
+
+207
+00:14:57,814 --> 00:15:01,089
+end.
+I can, also just change the labels on the
+
+208
+00:15:01,089 --> 00:15:06,658
+X axis, and maybe on the X lab I want to
+say, solar radiation, and then on the Y
+
+209
+00:15:06,658 --> 00:15:12,543
+label.
+I just want to say ozone, maybe in part
+
+210
+00:15:12,543 --> 00:15:17,069
+per billion.
+So I can run this code now.
+
+211
+00:15:18,027 --> 00:15:31,512
+Oh I, let me just add a title.
+And I can put this on the next line here.
+
+212
+00:15:31,512 --> 00:15:38,004
+So now I can run this code again.
+And you can see that the margins and
+
+213
+00:15:38,004 --> 00:15:42,061
+everything gets adjusted.
+So you're able to fit the, the labels onto
+
+214
+00:15:42,061 --> 00:15:45,068
+the plot.
+And so you don't have to worry about
+
+215
+00:15:45,068 --> 00:15:49,030
+things like spacing.
+Finally, I just want to show one more
+
+216
+00:15:49,030 --> 00:15:52,037
+example of how you can look at
+interactions in R.
+
+217
+00:15:52,037 --> 00:15:57,000
+So I, so there's a, there's one more
+variable in this data set, which is the
+
+218
+00:15:57,000 --> 00:16:00,069
+wind variable.
+And so we can look at how ozone and solar
+
+219
+00:16:00,069 --> 00:16:03,076
+radiation vary with both temperature and
+wind.
+
+220
+00:16:03,076 --> 00:16:09,260
+So I'm going to cut the wind variable
+into, again, four parts, with the equal
+
+221
+00:16:09,260 --> 00:16:13,775
+count function.
+You can see that we can just take a look
+
+222
+00:16:13,775 --> 00:16:20,618
+at the, this new variable here, and you
+can see that there are four intervals and
+
+223
+00:16:20,618 --> 00:16:26,064
+they do overlap, but and they're roughly
+equal count within each interval.
+
+224
+00:16:26,064 --> 00:16:33,268
+So now I can, I'm going to take my
+original code here, paste it in, but now
+
+225
+00:16:33,268 --> 00:16:40,333
+I'm going to, I'm gong to plot the
+relationship by range of temperature and
+
+226
+00:16:40,333 --> 00:16:46,567
+by range of wind.
+And so we can run this code now and see
+
+227
+00:16:46,567 --> 00:16:50,018
+what happens.
+And so now you can see that actually
+
+228
+00:16:50,035 --> 00:16:54,070
+there's sixteen plots now instead of four,
+which makes sense, because there's four
+
+229
+00:16:54,070 --> 00:16:58,084
+different levels of temperature and
+there's four different levels of wind, so
+
+230
+00:16:58,084 --> 00:17:02,092
+the combination of the, of the two
+together is sixteen possible combinations.
+
+231
+00:17:02,092 --> 00:17:08,052
+So you can see on the on the upper left
+here is for when wind and temperature are
+
+232
+00:17:08,052 --> 00:17:13,061
+on the low range, and all the way down
+here at the bottom right is when wind and
+
+233
+00:17:13,061 --> 00:17:18,063
+temperature are in their high range, and
+everything else in between is for some
+
+234
+00:17:18,063 --> 00:17:21,081
+combination of wind and temperature in
+between.
+
+235
+00:17:21,081 --> 00:17:26,879
+So you can see that these, you can see how
+the relationship between solar radiation
+
+236
+00:17:26,879 --> 00:17:30,934
+and ozone changes for different
+combinations of low wind/high temperature,
+
+237
+00:17:30,934 --> 00:17:34,914
+low temperature/high wind etc.
+Or maybe medium wind and medium
+
+238
+00:17:34,914 --> 00:17:39,550
+temperature, and you can see that the
+relationship is perhaps most interesting
+
+239
+00:17:39,550 --> 00:17:44,535
+with, for the kind of high temperature,
+and then maybe low to moderate wind, and
+
+240
+00:17:44,535 --> 00:17:49,506
+then in this upper right corner over here
+you can see the positioning on the
+
+241
+00:17:49,506 --> 00:17:52,817
+relationship there between the radiation
+and the ozone.
+
+242
+00:17:52,817 --> 00:17:57,380
+And so you can see that for each of the
+two conditioning variables there's a
+
+243
+00:17:57,380 --> 00:18:03,483
+little highlight slider that shows kind of
+where you are on either the wind or the
+
+244
+00:18:03,483 --> 00:18:08,589
+temperature range, whether you're low, in
+the middle, or you're in the high end and,
+
+245
+00:18:08,589 --> 00:18:13,923
+so that helps you kind of see where you
+are in the range of the conditioning
+
+246
+00:18:13,923 --> 00:18:17,000
+variable.
+So, these things can all be kind of
+
+247
+00:18:17,000 --> 00:18:22,057
+customized if you want in terms of the
+colors and the labeling, but this, but by
+
+248
+00:18:22,057 --> 00:18:27,400
+default you can see that the, that R, the
+X Y plot function will use the name of the
+
+249
+00:18:27,400 --> 00:18:30,060
+variable as the label within the strip up
+here.
+
+250
+00:18:30,060 --> 00:18:34,050
+So that's a quick demo of the X Y plot
+function in lattice.
+
+251
+00:18:34,070 --> 00:18:40,005
+There are a few other handy functions in
+the lattice package that of course your,
+
+252
+00:18:40,005 --> 00:18:44,087
+you can use and may find handy.
+So one of them is the scatter plot matrix
+
+253
+00:18:44,087 --> 00:18:50,208
+function or the SPLOM function.
+So you can use the, the SPLOM function to
+
+254
+00:18:50,208 --> 00:18:55,244
+look at pairwise relationships, so I'm
+going to use SPLOM, and then you give it a
+
+255
+00:18:55,244 --> 00:18:58,076
+tilde and then give it, you can give it
+the entire data set.
+
+256
+00:18:58,076 --> 00:19:03,034
+If you want to look at all possible
+combinations in this data set and when you
+
+257
+00:19:03,034 --> 00:19:07,099
+run that you'll see it makes those scatter
+plots of all the different variables
+
+258
+00:19:07,099 --> 00:19:12,005
+against each other in, in to each one
+plotted in two different forms.
+
+259
+00:19:12,022 --> 00:19:15,071
+You can also look at histograms with the
+histogram function.
+
+260
+00:19:15,071 --> 00:19:19,688
+So you can look at histogram of, let's say
+a single variable, say temperature, and
+
+261
+00:19:19,688 --> 00:19:24,355
+give a data equals environmental here.
+And with that right, you will see a
+
+262
+00:19:24,355 --> 00:19:26,704
+histogram of the temperature variable
+here.
+
+263
+00:19:26,704 --> 00:19:30,716
+So that's pretty standard.
+There's nothing particularly special about
+
+264
+00:19:30,716 --> 00:19:33,257
+that.
+But again, you could look at something
+
+265
+00:19:33,257 --> 00:19:37,320
+like temperature at the, histogram,
+histogram of temperature as the wind
+
+266
+00:19:37,320 --> 00:19:42,006
+varies, so I can say, I can use my
+wind.cut variable and then plot a
+
+267
+00:19:42,006 --> 00:19:46,483
+histogram of temperature for each range of
+wind, and you can see that the
+
+268
+00:19:46,483 --> 00:19:50,989
+distribution of temperature doesn't change
+too dramatically as the wind changes.
+
+269
+00:19:50,989 --> 00:19:56,437
+But another thing we could do is say look
+at the histogram of O, the distribution of
+
+270
+00:19:56,437 --> 00:20:01,405
+ozone as the wind changes, and see if that
+is of anything, is anything interesting.
+
+271
+00:20:01,405 --> 00:20:06,286
+And you can see that as the, as the wind
+increases, the ozone is a little bit more
+
+272
+00:20:06,286 --> 00:20:10,053
+concentrated in the lower range.
+Whereas, when there's very little wind,
+
+273
+00:20:10,053 --> 00:20:14,438
+the distribution seems to be spread a
+little bit, to, towards the higher range.
+
+274
+00:20:14,438 --> 00:20:18,191
+So the distribution does appear to change
+a little bit, with wind.
+
+275
+00:20:18,191 --> 00:20:22,054
+So, so that's the histogram function,
+which can be used in, in very much the
+
+276
+00:20:22,054 --> 00:20:25,253
+same way as the ozone func-, as the xy
+plot function, excuse me.
+
+277
+00:20:25,253 --> 00:20:27,725
+Where you can condition on different
+variables.
+
+278
+00:20:27,725 --> 00:20:31,918
+Of course, we could condition on both
+temperature and wind, to see what the
+
+279
+00:20:31,918 --> 00:20:35,646
+distribution looks like when you condition
+on those two variables.
+
+280
+00:20:35,646 --> 00:20:39,868
+And you can see that, as wind and
+temperature changes, the distribution does
+
+281
+00:20:39,868 --> 00:20:43,714
+become more spread out, or more
+concentrated towards zero, depending on
+
+282
+00:20:43,714 --> 00:20:46,967
+which way you're going.
+So in the bottom right over here we see
+
+283
+00:20:46,967 --> 00:20:50,878
+that when there is very low wind and very
+high temperature, the distribution is
+
+284
+00:20:50,878 --> 00:20:54,770
+most, kind of spread out towards the
+higher range whereas when there is very
+
+285
+00:20:54,770 --> 00:20:58,845
+high temperature and very low wind, excuse
+me, when there is very high wind and very
+
+286
+00:20:58,845 --> 00:21:02,707
+low temperature in the upper left, most of
+the values of ozone are concentrated
+
+287
+00:21:02,707 --> 00:21:06,000
+around zero.
+So that's the histogram and scatter plot
+
+288
+00:21:06,000 --> 00:21:08,092
+matrix function and as well as the X Y
+plot function.
+
+289
+00:21:08,092 --> 00:21:13,362
+So these are just a few of the functions
+in the lattice package that can be used to
+
+290
+00:21:13,362 --> 00:21:18,921
+plot data, and then more importantly to
+plot conditional relationships of data in
+
+291
+00:21:18,921 --> 00:21:23,029
+a way that's very compact and very useful
+to visualize.

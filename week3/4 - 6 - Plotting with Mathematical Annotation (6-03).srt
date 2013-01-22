@@ -1,0 +1,450 @@
+
+1
+00:00:00,000 --> 00:00:04,063
+One nice feature of R is the ability to do
+mathematical annotation within the
+
+2
+00:00:04,063 --> 00:00:07,048
+plotting device.
+So you can make plots that have
+
+3
+00:00:07,227 --> 00:00:11,093
+mathematical symbols in them to annotate
+them and provide context.
+
+4
+00:00:11,093 --> 00:00:16,169
+So if you're familiar with the, the
+language with the typesetting system known
+
+5
+00:00:16,169 --> 00:00:20,233
+as LaTeX then your ability, then your
+ability, then you have the ability to
+
+6
+00:00:20,233 --> 00:00:23,753
+produce LaTeX like symbols on the plot
+for, for, for doing mathematical
+
+7
+00:00:23,753 --> 00:00:27,044
+annotation.
+So this is very useful if you want to make
+
+8
+00:00:27,044 --> 00:00:31,035
+fun of other people who use other
+statistical packages cuz they, generally
+
+9
+00:00:31,035 --> 00:00:35,073
+speaking, don't have the ability to add
+LaTeX like symbols onto their plots.
+
+10
+00:00:35,073 --> 00:00:39,850
+So if you're, if you want to make a plot
+that's a lot nerdier than those plots then
+
+11
+00:00:40,017 --> 00:00:43,053
+this is the way to do it.
+So, the basic idea is that math symbols
+
+12
+00:00:43,053 --> 00:00:46,032
+are expressions in r.
+And so you have to use the expression
+
+13
+00:00:46,032 --> 00:00:49,008
+function to encode them when you're using
+them in a plot.
+
+14
+00:00:49,139 --> 00:00:51,974
+So there's a list, there's a list, a
+specific list of a, of allowed symbols
+
+15
+00:00:53,006 --> 00:00:55,987
+for, for plotting mathematical annotation,
+and they're documented in the help page
+
+16
+00:00:56,098 --> 00:00:58,821
+for plot math.
+And so the, if you're interested in doing
+
+17
+00:00:58,821 --> 00:01:03,184
+this kind of annotation, you should really
+look at the help page for plot math, and,
+
+18
+00:01:03,184 --> 00:01:06,559
+and basically have it memorized, cuz it's
+not that very long, and they're are not
+
+19
+00:01:06,559 --> 00:01:10,016
+that many symbols.
+So you can have it, in your head, and then
+
+20
+00:01:10,016 --> 00:01:12,073
+do all ca, all the mathematical annotation
+that you want.
+
+21
+00:01:12,297 --> 00:01:18,008
+So plotting, plotting functions that take
+arguments for any, for text, so like the
+
+22
+00:01:18,008 --> 00:01:22,881
+title function the axis function the text
+function, all these functions that take
+
+23
+00:01:23,069 --> 00:01:27,609
+arguments that put labels on the plot,
+will g, will generally allow expressions
+
+24
+00:01:27,609 --> 00:01:31,078
+for the math symbol.
+So, while you can pass regular text to be
+
+25
+00:01:31,078 --> 00:01:36,034
+plotted on the, on the, on the graphics
+device, you can also pass in an expression
+
+26
+00:01:36,034 --> 00:01:39,048
+that will be translated into a
+mathematical annotation.
+
+27
+00:01:39,229 --> 00:01:43,065
+So here's a simple example.
+Here, I'm just plotting I'm not plotting
+
+28
+00:01:43,065 --> 00:01:47,767
+any data but I'm creating, I'm setting up
+a plot window where the title of the plot
+
+29
+00:01:47,767 --> 00:01:50,089
+is going to be the, the expression theta
+equal zero.
+
+30
+00:01:51,106 --> 00:01:53,092
+The y label is going to be expression,
+gamma hat equal zero.
+
+31
+00:01:53,092 --> 00:01:59,068
+And the x label is going to be the sum, so
+like, so you can think ofs, the capital
+
+32
+00:01:59,068 --> 00:02:04,769
+sigma representing the sum, where I goes
+from one to n of xi times yi, the product
+
+33
+00:02:04,769 --> 00:02:08,025
+xi times yi.
+So these expressions will appear in the
+
+34
+00:02:08,025 --> 00:02:12,502
+plot window and, and will be typeset in a
+LaTeX like manner.
+
+35
+00:02:12,737 --> 00:02:19,063
+You can also paste strings together so,
+if, so for example, here, I can creating a
+
+36
+00:02:19,063 --> 00:02:24,336
+histogram where the x label, as the
+expression the mean, and then in
+
+37
+00:02:24,336 --> 00:02:29,627
+parenthesis, x bar, is, and then the sum,
+you know, x, xi over n from i, you, it
+
+38
+00:02:29,627 --> 00:02:33,143
+goes from one to n.
+So here, it's just defining what x bar is,
+
+39
+00:02:33,143 --> 00:02:36,653
+which is the mean.
+So you can paste strings together like
+
+40
+00:02:36,653 --> 00:02:41,405
+this which include, you know, standard
+text plus mathematical expressions.
+
+41
+00:02:41,405 --> 00:02:47,388
+However, when you do this, all of it must
+occur within the expression function.
+
+42
+00:02:47,658 --> 00:02:54,645
+So one question is, so in the previous
+example, I put hard coded, just constants,
+
+43
+00:02:54,645 --> 00:02:59,778
+into the In to the labels that I want to
+plot on, in the graphics device.
+
+44
+00:02:59,778 --> 00:03:04,383
+What happens if the expression that you
+want to plot is actually the result of a
+
+45
+00:03:04,383 --> 00:03:07,077
+computation?
+For example, suppose you want to say that
+
+46
+00:03:07,077 --> 00:03:10,843
+the mean x bar is equal to and then the,
+and then the mean of your data.
+
+47
+00:03:10,843 --> 00:03:15,488
+Well you're not going to know what the
+mean of your data is until you calculate
+
+48
+00:03:15,488 --> 00:03:19,862
+it and so you might want to put the actual
+calculation of the mean into the
+
+49
+00:03:20,029 --> 00:03:23,231
+expression itself.
+So here I'm generating some data to have a
+
+50
+00:03:23,231 --> 00:03:27,538
+linear relationship, x and y, and I want
+to plot x and y and on the, on the x axis,
+
+51
+00:03:27,538 --> 00:03:30,127
+I want to have the x label be the mean of
+x.
+
+52
+00:03:30,127 --> 00:03:33,659
+And on the y axis, I want to have the x,
+the y label be the mean of y.
+
+53
+00:03:33,659 --> 00:03:37,995
+So, of course, I don't know what those
+numbers are until I calculate them, so I'm
+
+54
+00:03:37,995 --> 00:03:42,016
+going to use the substitute function to
+pa, rather than the expression function,
+
+55
+00:03:42,016 --> 00:03:46,221
+because the substitute function will
+substitute the actual value of the mean
+
+56
+00:03:46,384 --> 00:03:49,448
+into my plot.
+So here I'm saying that bar of x, which is
+
+57
+00:03:49,448 --> 00:03:52,205
+x, which is so is going to be x bar, is
+equal to k.
+
+58
+00:03:52,382 --> 00:03:56,573
+And then and for k, I say I have, I passed
+the list k is equal to the mean of x.
+
+59
+00:03:56,573 --> 00:04:03,452
+And similarly for, for the y label I say
+bar y or x bar equal to k, where in this
+
+60
+00:04:03,452 --> 00:04:07,134
+case k is equal to the mean of y.
+So now what substitute's going to do is
+
+61
+00:04:07,134 --> 00:04:11,178
+going to, is going to take the, it's going
+to take k, it's going to, it's going to
+
+62
+00:04:11,178 --> 00:04:15,375
+substitute in the actual value of the mean
+of x for the x label and then the mean of
+
+63
+00:04:15,375 --> 00:04:18,257
+y for the y label.
+And so when I'm plo, when I call this plot
+
+64
+00:04:18,401 --> 00:04:22,846
+and direct it toward the plot window where
+na on, on my y label and my x label I am
+
+65
+00:04:22,846 --> 00:04:25,963
+going to have the mean of each of those
+dimensions.
+
+66
+00:04:26,168 --> 00:04:29,962
+So ya, and this, the example down here,
+I've got four plots and I'm trying to make
+
+67
+00:04:30,088 --> 00:04:34,027
+two, in a two by two matrix.
+And I've got an old four loop here that's
+
+68
+00:04:34,027 --> 00:04:38,016
+making the plots, and what I'm going to do
+is I'm going to create a histogram of some
+
+69
+00:04:38,016 --> 00:04:41,894
+random genera, randomly generated data,
+and in each and each histogram I want to
+
+70
+00:04:41,894 --> 00:04:46,005
+put the title to be theta equals a number
+one, two, three, four.
+
+71
+00:04:46,005 --> 00:04:51,001
+So here I'm just substituting I'm saying,
+I'm using the substitute, I'm saying theta
+
+72
+00:04:51,001 --> 00:04:55,045
+equals num, and then num is going to be
+equal to i, which is the index and the
+
+73
+00:04:55,045 --> 00:04:58,056
+four loop, which is going to be one, two,
+three and four.
+
+74
+00:04:58,056 --> 00:05:03,035
+So you can see the result here, is that I
+get four plots, and the title for each one
+
+75
+00:05:03,035 --> 00:05:05,082
+is theta is equal to one, two, three or
+four.
+
+76
+00:05:05,082 --> 00:05:09,038
+So, this is just some of the mathematical
+annotation that you can do in R.
+
+77
+00:05:09,038 --> 00:05:13,290
+You can get a lot fancier if you want to.
+So, and in looking at the plot math help
+
+78
+00:05:13,290 --> 00:05:17,047
+page will allow you to see what kinds of
+symbols you can put into your plots.
+
+79
+00:05:17,047 --> 00:05:21,059
+So, just a very quick summary of the
+important health pages that are useful to
+
+80
+00:05:21,059 --> 00:05:25,056
+know when you're doing plotting in R.
+The par function definitely should be
+
+81
+00:05:25,056 --> 00:05:29,063
+looked at to look at all the different
+options that you can specify when in the
+
+82
+00:05:29,063 --> 00:05:32,058
+base plotting system.
+The plot function, of course, is quite
+
+83
+00:05:32,058 --> 00:05:34,567
+useful.
+In the lattice system the xy plot function
+
+84
+00:05:34,567 --> 00:05:39,214
+it has pretty much all of the help
+information that you're going to need if
+
+85
+00:05:39,214 --> 00:05:42,702
+you use the lattice system.
+The plot malt hea, math help page is
+
+86
+00:05:42,702 --> 00:05:46,707
+useful for if you're doing mathematical
+annotation and it is actually relevant to
+
+87
+00:05:46,707 --> 00:05:50,032
+both the base plotting and the lattice
+plotting system.
+
+88
+00:05:50,032 --> 00:05:54,071
+So you can do mathematical annotation in
+both systems using the same approach.
+
+89
+00:05:54,255 --> 00:05:58,552
+And finally the axis function it's
+actually quite useful if you, for the base
+
+90
+00:05:58,552 --> 00:06:06,058
+plotting system if you want to annotate
+axis in special ways.

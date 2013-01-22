@@ -1,0 +1,1750 @@
+
+1
+00:00:00,000 --> 00:00:04,042
+This lecture's going to be about plotting,
+and it's going to provide, provide a brief
+
+2
+00:00:04,042 --> 00:00:08,578
+introduction to the, a few of the plotting
+functions and mechanisms in R.
+
+3
+00:00:08,578 --> 00:00:12,037
+So, our first, this lecture's going to be
+divided into two parts.
+
+4
+00:00:12,037 --> 00:00:16,416
+The, the first part I'm going to talk
+about the base plotting paradigm, and in
+
+5
+00:00:16,416 --> 00:00:20,071
+the second part I'm going to talk about
+the lattice plotting paradigm.
+
+6
+00:00:20,071 --> 00:00:26,079
+So, the basic idea with plotting in R is
+that there are a couple of packages that
+
+7
+00:00:26,079 --> 00:00:29,041
+control the plotting engine and how things
+work.
+
+8
+00:00:29,041 --> 00:00:31,099
+The main one, of course, is the graphics
+package.
+
+9
+00:00:31,099 --> 00:00:36,037
+So, the graphics package, of course, comes
+with R when you download it, and it's
+
+10
+00:00:36,037 --> 00:00:39,087
+usually loaded by default.
+So, this contains many of the basic
+
+11
+00:00:39,087 --> 00:00:44,042
+functions for graphing including the plot
+function, hist for histograms, boxplot for
+
+12
+00:00:44,042 --> 00:00:48,069
+boxplots, and many other kind of very
+standard functions that you probably are
+
+13
+00:00:48,069 --> 00:00:52,024
+already familiar with.
+The other major package for plotting is
+
+14
+00:00:52,024 --> 00:00:56,030
+the lattice package, and this code
+contains code for producing what are
+
+15
+00:00:56,030 --> 00:00:59,535
+called trellis graphics.
+And these are, this system is independent
+
+16
+00:00:59,535 --> 00:01:04,794
+of the base graphic system, so that the
+plot has it's own functions like xyplot,
+
+17
+00:01:04,794 --> 00:01:07,914
+bwplot, level plot.
+And they don't intersect at all with the
+
+18
+00:01:07,914 --> 00:01:11,421
+plot or the hist of the other functions in
+the base graphic systems.
+
+19
+00:01:11,421 --> 00:01:16,124
+So, usually, you have to decide you, are
+you going to use the great, the base
+
+20
+00:01:16,124 --> 00:01:19,011
+graphic system or the lattice graphic
+system?
+
+21
+00:01:19,028 --> 00:01:22,514
+And, and for the most part, most people
+will start with the base graphics so
+
+22
+00:01:22,514 --> 00:01:26,325
+that's what we'll start with here.
+There's another package called grid, which
+
+23
+00:01:26,325 --> 00:01:31,215
+implements a lot of the kind of low-level
+and kind of nitty gritty details that is,
+
+24
+00:01:31,215 --> 00:01:35,843
+that are used by the lattice package.
+And, generally speaking, you're not going
+
+25
+00:01:35,843 --> 00:01:40,478
+to be calling functions from the grid
+package directly, but rather this'll, this
+
+26
+00:01:40,478 --> 00:01:43,051
+package we'll be working behind the
+scenes.
+
+27
+00:01:43,068 --> 00:01:48,059
+Finally, the GR devices package, which
+stands for Graphics Devices, contains all
+
+28
+00:01:48,059 --> 00:01:52,074
+the code which implements the different
+graphic devices that R can use.
+
+29
+00:01:52,074 --> 00:01:57,036
+Including the X11 device, the PDF device,
+the postscript PNG, all kinds of things.
+
+30
+00:01:57,036 --> 00:02:01,596
+So, these are the things that you can
+export graphics too, whether they be to a,
+
+31
+00:02:01,596 --> 00:02:07,084
+to the screen or, to some sort of file.
+You will occasionally call these types of
+
+32
+00:02:07,084 --> 00:02:12,075
+functions directly, but for the most part,
+this, the code is this pack is not,
+
+33
+00:02:12,075 --> 00:02:16,432
+generally speaking, for the user.
+So, when you go, when you go to make a
+
+34
+00:02:16,432 --> 00:02:20,941
+plot in R, usually, there are a couple of
+choices you have to think about.
+
+35
+00:02:20,941 --> 00:02:24,079
+Maybe not consciously, but sometimes,
+consciously.
+
+36
+00:02:24,079 --> 00:02:29,029
+So, The first is, what device are you
+going to use to make the plot?
+
+37
+00:02:29,050 --> 00:02:33,581
+So, when you call a, a base plotting
+function in R, like plot, or hist, or
+
+38
+00:02:33,581 --> 00:02:38,025
+boxplot, and there isn't already a plot
+window open.
+
+39
+00:02:38,025 --> 00:02:43,002
+What will usually happen is that a plot
+window will open on your, on your computer
+
+40
+00:02:43,002 --> 00:02:46,023
+and the plot will appear in that window.
+So, all the, and this is so that the
+
+41
+00:02:46,023 --> 00:02:49,462
+window that in which the plot appears is
+called a plotting device.
+
+42
+00:02:49,462 --> 00:02:53,956
+And, depending on what type of platform
+you're using, there's a different name for
+
+43
+00:02:53,956 --> 00:02:57,650
+that plotting device.
+On Unix it's called X11, on Windows the
+
+44
+00:02:57,650 --> 00:03:01,117
+device is called Windows, and on Mac OS X
+it's called Quartz.
+
+45
+00:03:01,117 --> 00:03:05,081
+So, for each one of these platforms,
+there's a function corresponding to X11,
+
+46
+00:03:05,081 --> 00:03:08,373
+Windows, and Quartz which launches the
+plotting window.
+
+47
+00:03:08,373 --> 00:03:11,531
+So, you have to think about first, where
+do you want the plot to be sent?
+
+48
+00:03:11,531 --> 00:03:15,064
+Do you want it to be sent to the screen?
+Do you want it to be sent to a file so
+
+49
+00:03:15,064 --> 00:03:18,658
+that you can include it somewhere else?
+These are so, just, these, and cuz there
+
+50
+00:03:18,658 --> 00:03:22,394
+are different types of functions that you
+can use to, for, for those different types
+
+51
+00:03:22,394 --> 00:03:24,681
+of operations.
+The other question that's related is, you
+
+52
+00:03:24,681 --> 00:03:28,885
+know, what do you want to use to plot for?
+Do you want to just show it on the screen
+
+53
+00:03:28,885 --> 00:03:31,058
+to see, to look at some data, maybe
+temporarily?
+
+54
+00:03:31,073 --> 00:03:33,052
+Or, is this plot going to end up in a
+paper?
+
+55
+00:03:33,052 --> 00:03:35,597
+So, it's going to be like a publication
+type of thing?
+
+56
+00:03:35,597 --> 00:03:39,872
+Are you going to use it in a presentation?
+So, like a PowerPoint slide or, you know,
+
+57
+00:03:39,872 --> 00:03:44,036
+like an overhead type of projector?
+And so, these kinds of considerations will
+
+58
+00:03:44,036 --> 00:03:48,238
+defect, will affect a little bit the types
+of things that you put into your plot.
+
+59
+00:03:48,238 --> 00:03:52,077
+For example, if you're going to be in a
+presentation type of setting where there's
+
+60
+00:03:52,077 --> 00:03:55,985
+going to be people sitting, you know, 200
+feet away, you probably don't want to have
+
+61
+00:03:55,985 --> 00:03:59,574
+very tiny little fonts with lots of little
+dots and things like that because they
+
+62
+00:03:59,574 --> 00:04:03,431
+won't be visible from a long distance.
+You're going to want to use bigger fonts,
+
+63
+00:04:03,431 --> 00:04:06,000
+bigger plotting symbols and things like
+that.
+
+64
+00:04:06,000 --> 00:04:09,909
+Of course, if you're, if you're making a
+plot for a paper, then you can have lots,
+
+65
+00:04:09,909 --> 00:04:13,091
+a lot more fine detail because, you know,
+people will be looking at much closer
+
+66
+00:04:13,091 --> 00:04:16,068
+range.
+And you can have all kinds of other kinda
+
+67
+00:04:16,068 --> 00:04:20,047
+richer details in that kind of a plot.
+So, thinking about what, who the audience
+
+68
+00:04:20,047 --> 00:04:23,487
+is going to be, where the plot is going to
+be presented, or key question for, you
+
+69
+00:04:23,487 --> 00:04:28,948
+know, how you're going to make the plot?
+So, another question that's important is
+
+70
+00:04:28,948 --> 00:04:33,437
+that, is whether or not there's going to
+be a large amount of data that goes into
+
+71
+00:04:33,437 --> 00:04:35,875
+the plot.
+If you're going to have lots of points,
+
+72
+00:04:35,875 --> 00:04:39,616
+for example, if you're going to have
+thousands and thousands or maybe millions
+
+73
+00:04:39,616 --> 00:04:43,969
+of points going into the plot then, that
+will help determine what type of plotting
+
+74
+00:04:43,969 --> 00:04:48,580
+device you're going to use when you export
+the plot to either the screen or to a
+
+75
+00:04:48,580 --> 00:04:51,071
+file.
+If it was just going to be handful points,
+
+76
+00:04:51,071 --> 00:04:56,737
+may be ten or fifteen, then, then this is
+usually not an important consideration.
+
+77
+00:04:56,737 --> 00:05:00,696
+And the last one is, whether or not you
+need, you're going to be needing, able to
+
+78
+00:05:00,696 --> 00:05:04,161
+need to re-size the graphics.
+Or, do you want your graph to be set at a
+
+79
+00:05:04,161 --> 00:05:08,423
+specific resolution, or do you, or you're
+going to want to make it kind of larger
+
+80
+00:05:08,423 --> 00:05:11,069
+and smaller without compromising the
+quality?
+
+81
+00:05:11,087 --> 00:05:15,293
+Usually, this will determine whether or
+not you need a, you use a vector format
+
+82
+00:05:15,293 --> 00:05:19,057
+like a PDF or post script, or a bit map
+format like JPEG or PNG.
+
+83
+00:05:20,048 --> 00:05:23,827
+The next question you're going to want to
+ask yourself when making a plot is what
+
+84
+00:05:23,827 --> 00:05:26,047
+type, what graphics system are you going
+to use?
+
+85
+00:05:26,047 --> 00:05:28,861
+The base graphics system or the grid slash
+lattice system?
+
+86
+00:05:28,861 --> 00:05:32,795
+Generally speaking, you can't mix these
+two systems so you're going to have to
+
+87
+00:05:32,795 --> 00:05:36,280
+kinda choose one set of functions over
+another, another set of functions.
+
+88
+00:05:36,280 --> 00:05:39,478
+So, we're going to talk about the base
+graphics system first.
+
+89
+00:05:39,478 --> 00:05:43,770
+And, the basic philosophy of the base
+graphic systems is that it, you know, you
+
+90
+00:05:43,770 --> 00:05:47,839
+kind of construct a plot piecemeal.
+So, the idea is that you kind of set up
+
+91
+00:05:47,839 --> 00:05:53,023
+the plotting region, and then you can
+annotate the plot using different sets of
+
+92
+00:05:53,023 --> 00:05:57,008
+functions that will add to the plot.
+And, and then as you can see, for example,
+
+93
+00:05:57,008 --> 00:05:59,578
+you can maybe put some points on a, on the
+canvas.
+
+94
+00:05:59,578 --> 00:06:02,750
+You can draw a title.
+You can add some access labels.
+
+95
+00:06:02,750 --> 00:06:07,597
+You can maybe annotate some of the points
+in the plot, or, and add some color and
+
+96
+00:06:07,597 --> 00:06:09,524
+things like that.
+Add a legend.
+
+97
+00:06:09,524 --> 00:06:13,087
+And this is all done one by one by a
+different function calls.
+
+98
+00:06:13,087 --> 00:06:19,006
+And so, usually the process of making a
+plot involves a long series of functions
+
+99
+00:06:19,026 --> 00:06:23,070
+where you kind of add things one by one.
+Many people find this conceptually a
+
+100
+00:06:23,070 --> 00:06:27,094
+simpler process and often allows the kind,
+the construction of the plot to mirror the
+
+101
+00:06:27,094 --> 00:06:29,875
+thought process.
+So, you might be thinking, okay, I want to
+
+102
+00:06:29,875 --> 00:06:33,714
+put this points on the screen and then oh,
+I want to add this label, and then oh, I
+
+103
+00:06:33,714 --> 00:06:37,447
+want to change the color here.
+And so, it kind of mirrors the thought
+
+104
+00:06:37,447 --> 00:06:40,743
+process a little bit.
+On the other hand, the lattice and the
+
+105
+00:06:40,743 --> 00:06:45,620
+grid graphic system, the way that you make
+plots using the lattice package typically
+
+106
+00:06:45,620 --> 00:06:49,768
+is via a single function call.
+And so, the idea is you kind of throw all
+
+107
+00:06:49,768 --> 00:06:54,245
+the details into a detailed function, and,
+and then R makes the entire plot at once.
+
+108
+00:06:54,245 --> 00:06:56,578
+So, there's no adding of this and adding
+of that.
+
+109
+00:06:56,578 --> 00:07:01,031
+And so, in some sense, you kinda have to
+think of everything in advanced.
+
+110
+00:07:01,046 --> 00:07:03,972
+So, you, so, so you can put them all into
+the single function.
+
+111
+00:07:03,972 --> 00:07:07,396
+So, if you're going to make a scatter plot
+via the xyplot function.
+
+112
+00:07:07,396 --> 00:07:12,127
+The xyplot function has a large number of
+options that you can specify to kind of
+
+113
+00:07:12,127 --> 00:07:15,656
+specify to kind of set the, the axis
+labels, the colors, and the, and the
+
+114
+00:07:15,656 --> 00:07:18,747
+types, and, and the, to the plotting
+symbol and things like that.
+
+115
+00:07:18,747 --> 00:07:23,175
+So, this is the kind of thing that, that
+makes it a little bit different from the
+
+116
+00:07:23,175 --> 00:07:27,555
+base package The base graphic system
+because, a plot will generally consists of
+
+117
+00:07:27,555 --> 00:07:30,979
+single function call rather than series of
+function calls.
+
+118
+00:07:30,979 --> 00:07:35,485
+The advantage of using the lattice
+approach is that R can automatically
+
+119
+00:07:35,485 --> 00:07:39,877
+calculate all the spacings, the margins,
+the font sizes etc., so that everything
+
+120
+00:07:39,877 --> 00:07:44,161
+kind of looks nice from gecko, rather than
+you have to kind of manually calculate
+
+121
+00:07:44,161 --> 00:07:48,405
+that as you go.
+So, let's talk about the base graphic
+
+122
+00:07:48,405 --> 00:07:51,230
+system.
+The base graphic system is, is a very
+
+123
+00:07:51,230 --> 00:07:54,335
+powerful tool for creating two dimensional
+graphics.
+
+124
+00:07:54,335 --> 00:07:58,915
+And, for the most part, when I talk about
+two dimensional graphics in this lecture.
+
+125
+00:07:58,915 --> 00:08:01,609
+And the most fundamental function is the
+plot function.
+
+126
+00:08:01,609 --> 00:08:05,913
+And usually, you call plot with two
+arguments, a vector x and a, and a vector
+
+127
+00:08:05,913 --> 00:08:07,585
+y.
+So, the x, obviously the x vector
+
+128
+00:08:07,585 --> 00:08:11,368
+specifies the x coordinates for the two
+dimensional plot, and the y vector
+
+129
+00:08:11,368 --> 00:08:15,126
+specifies the y coordinates.
+Another function, of course, is something
+
+130
+00:08:15,126 --> 00:08:18,473
+like hist, which only takes a single
+argument and it produces a histogram
+
+131
+00:08:18,473 --> 00:08:21,041
+showing the distribution of that numeric
+vector, x.
+
+132
+00:08:21,058 --> 00:08:25,073
+Both of these functions will launch a
+graphics device if one is not already
+
+133
+00:08:25,073 --> 00:08:28,019
+open.
+So, typically, when you start up R, you're
+
+134
+00:08:28,019 --> 00:08:32,045
+not going to have a graphics device open.
+So, the first time you call plot, it will
+
+135
+00:08:32,045 --> 00:08:35,002
+launch and you will see a graphics window
+open.
+
+136
+00:08:35,002 --> 00:08:38,855
+And then, after it launches the graphics
+window, it will draw the plot on the
+
+137
+00:08:38,855 --> 00:08:42,016
+device.
+So, if the arguments to plot are not of
+
+138
+00:08:42,016 --> 00:08:45,462
+some special class.
+So, if you're just going to give it, if
+
+139
+00:08:45,462 --> 00:08:50,397
+you're just passing it in some numeric
+vector or of some sort, then the default
+
+140
+00:08:50,397 --> 00:08:54,609
+plotting method is called.
+And the default plotting method has many
+
+141
+00:08:54,609 --> 00:08:59,672
+arguments because it lets you thing, set
+things like the title, the x-axis labels,
+
+142
+00:08:59,672 --> 00:09:03,978
+the y-axis labels, etc.
+And, you can specify these arguments if
+
+143
+00:09:03,978 --> 00:09:09,716
+you wish, or you can just use the default.
+So, the base graphic system has many, many
+
+144
+00:09:09,716 --> 00:09:14,049
+other parameters too which are not
+necessarily arguments to the default
+
+145
+00:09:14,049 --> 00:09:17,321
+plotting function.
+And, all of these arguments can be set,
+
+146
+00:09:17,321 --> 00:09:21,560
+and tweaked, and modified, etc.
+And so, and, and, and you're going to have
+
+147
+00:09:21,560 --> 00:09:26,261
+to know at least some of them so to, Tto
+know how to customize your plots.
+
+148
+00:09:26,261 --> 00:09:30,956
+Most of the parameters are documented in
+the help page for the par function.
+
+149
+00:09:30,956 --> 00:09:34,170
+So, the par function controls all the
+graphing parameters.
+
+150
+00:09:34,170 --> 00:09:38,659
+And, as, you know, as I say here, it
+wouldn't help to memorize this help page
+
+151
+00:09:38,659 --> 00:09:42,272
+if you're going to be doing a lot of
+plotting.
+
+152
+00:09:42,272 --> 00:09:48,604
+So, the par function is used to specify
+global graphics parameters that, so
+
+153
+00:09:48,604 --> 00:09:53,201
+anything that you set in the par function
+will affect all plots that you make in a
+
+154
+00:09:53,201 --> 00:09:56,722
+single R session.
+So, if you specify options to, to the plot
+
+155
+00:09:56,722 --> 00:10:01,572
+function, that will affect that plot but
+won't affect, say, the next plot if you
+
+156
+00:10:01,572 --> 00:10:04,939
+specify the next option.
+But anything that you set using the par
+
+157
+00:10:04,939 --> 00:10:08,269
+function will set, will affect the all of
+the plots that you make.
+
+158
+00:10:08,269 --> 00:10:12,925
+So, this is, so, sometimes this is useful
+to save yourself time to specify an option
+
+159
+00:10:12,925 --> 00:10:16,968
+every single time when you call a plot.
+However, any option that is specified
+
+160
+00:10:16,968 --> 00:10:22,964
+using the par function can be overridden
+by specifying it in the plot functions for
+
+161
+00:10:22,964 --> 00:10:26,895
+a specific plot.
+So, a couple of very important options
+
+162
+00:10:26,895 --> 00:10:32,433
+that you should, definitely have memorized
+are the pch option, which controls the
+
+163
+00:10:32,433 --> 00:10:38,004
+plotting character or the plotting symbol.
+The default is an open circle but you can,
+
+164
+00:10:38,004 --> 00:10:41,021
+there are many, many options that you can
+choose from here.
+
+165
+00:10:41,037 --> 00:10:44,047
+Lty is the line type.
+So if you, if you plot a, if you make a
+
+166
+00:10:44,047 --> 00:10:48,442
+plot that has lines in it, for example,
+like the time series plot or something
+
+167
+00:10:48,442 --> 00:10:52,578
+like that, it, it specifies what type of
+line is going to be drawn, and the default
+
+168
+00:10:52,578 --> 00:10:56,082
+of course is the solid line.
+But you can have a dash line, a dotted
+
+169
+00:10:56,082 --> 00:11:00,075
+line, a dash-dotted line, etc.
+Lwd is the line width, so it controls the
+
+170
+00:11:00,075 --> 00:11:04,400
+thickness of the line that's drawn.
+Col is the plotting color.
+
+171
+00:11:04,400 --> 00:11:09,953
+And, this determines what color the
+plotting symbol, which default is the open
+
+172
+00:11:09,953 --> 00:11:14,807
+circle, will be plotted in the default.
+Of course, it's going to be black.
+
+173
+00:11:14,807 --> 00:11:20,636
+Las is another nice option which precisely
+orientation of the axis labels on the
+
+174
+00:11:20,636 --> 00:11:23,128
+plot.
+Couple more options here, bg is the
+
+175
+00:11:23,128 --> 00:11:27,673
+background color for the canvas.
+The default's going to be no background
+
+176
+00:11:27,673 --> 00:11:31,030
+color.
+Mar is the margin size and this specifies
+
+177
+00:11:31,030 --> 00:11:36,113
+the margin around the plot so that there's
+four sides of, of the, of the, of the
+
+178
+00:11:36,113 --> 00:11:41,018
+plotting region and you can have a
+different size margin for each side.
+
+179
+00:11:41,038 --> 00:11:46,058
+Oma is the outer margin size, which is
+the, kind of, the outside region of the
+
+180
+00:11:46,058 --> 00:11:50,313
+plot window.
+And then the, two important options for
+
+181
+00:11:50,313 --> 00:11:56,187
+setting the number of plots on the canvas
+which is mfrow, mfcol which can be set
+
+182
+00:11:56,187 --> 00:12:00,432
+separately.
+They specify the number of plots per row
+
+183
+00:12:00,432 --> 00:12:03,332
+and column.
+So, for example, it's, it's, if, if you
+
+184
+00:12:03,332 --> 00:12:08,054
+want to have, if you want to have more
+than one plot, so you can have two plots,
+
+185
+00:12:08,054 --> 00:12:13,022
+or four plots and things like on the
+canvas, you can set the mfrow and the
+
+186
+00:12:13,022 --> 00:12:16,477
+mfcol options.
+The, the only difference between the two
+
+187
+00:12:16,477 --> 00:12:21,518
+is that when you specify mfrow, the plots
+are filled in row-wise across the canvas.
+
+188
+00:12:21,518 --> 00:12:25,783
+And, when you specify mfcol, the plots are
+filled in column-wise kind of down the
+
+189
+00:12:25,783 --> 00:12:31,749
+canvas.
+So, you can look at the default values
+
+190
+00:12:31,749 --> 00:12:35,031
+that are specified for the various par
+options.
+
+191
+00:12:35,049 --> 00:12:38,346
+So, for example, the default for lty is,
+is solid.
+
+192
+00:12:38,346 --> 00:12:42,247
+So, this is a solid line.
+The default for lwd is one, so one is the,
+
+193
+00:12:42,247 --> 00:12:45,945
+is kind of the standard thickness as you
+increase the number.
+
+194
+00:12:45,945 --> 00:12:49,623
+So, if you go to two, three, four, the
+thickness increases.
+
+195
+00:12:49,623 --> 00:12:54,699
+So, you can kind of adjust and you can use
+this on a numeric scale so you can, so you
+
+196
+00:12:54,699 --> 00:13:00,144
+can have an lwd of 1.5 if you want or,
+and, and that will be somewhere in between
+
+197
+00:13:00,144 --> 00:13:03,697
+one and two.
+The default color for the plotting is
+
+198
+00:13:03,697 --> 00:13:08,000
+black, and the default pch is one which is
+the open circle.
+
+199
+00:13:08,000 --> 00:13:13,189
+For the, for bg, you have a transparent.
+S, this means that the canvas does not
+
+200
+00:13:13,189 --> 00:13:17,751
+have any color on the background.
+You can specify a background color if you
+
+201
+00:13:17,751 --> 00:13:21,060
+want, but this is, in my experience,
+fairly uncommon.
+
+202
+00:13:21,078 --> 00:13:24,039
+The mar option specifies, again, the
+margins.
+
+203
+00:13:24,039 --> 00:13:29,047
+And, and the way this works is that there
+are four numbers, and each number
+
+204
+00:13:29,047 --> 00:13:33,912
+represents the size of the margin for a
+different side of the plotting region.
+
+205
+00:13:33,912 --> 00:13:37,392
+So, there's, there's four sides to the
+square plotting region.
+
+206
+00:13:37,392 --> 00:13:41,576
+So, the, the, and you can think of it as
+going clockwise around the plotting
+
+207
+00:13:41,576 --> 00:13:44,589
+region, starting around the, starting at
+the very bottom.
+
+208
+00:13:44,589 --> 00:13:49,731
+So the, you get the x-axis at the, that's
+the first side, the y-axis is the second
+
+209
+00:13:49,731 --> 00:13:52,267
+side.
+The top of the plot is the third side and
+
+210
+00:13:52,267 --> 00:13:56,272
+the right side is the fourth side.
+So, so you can see that the, the, the bot,
+
+211
+00:13:56,272 --> 00:14:00,769
+the x-axis, the bottom of the plot has the
+largest amount of space, it has a 5.1.
+
+212
+00:14:00,769 --> 00:14:03,918
+The, the y-axis has the, has 4.1 for, for
+amount of space.
+
+213
+00:14:03,918 --> 00:14:07,589
+The top of the plot has 4.1 and the, and
+the right side has 2.1.
+
+214
+00:14:07,589 --> 00:14:11,373
+So, the right side of the plot has the
+least amount of space.
+
+215
+00:14:11,373 --> 00:14:16,529
+And you can adjust these numbers if you
+want to make more space or less space for
+
+216
+00:14:16,529 --> 00:14:20,023
+each side of the plot.
+But, , the mar option is always a vector
+
+217
+00:14:20,023 --> 00:14:23,923
+of four numbers so one number per side.
+The outer margin is, is a region that's
+
+218
+00:14:23,923 --> 00:14:27,269
+just outside of the margin.
+And, again, there's four sides to this.
+
+219
+00:14:27,269 --> 00:14:30,690
+And so, the default the outer margin is
+going to be zero.
+
+220
+00:14:30,690 --> 00:14:35,680
+The outer margin is really only relevant
+if you have more than one plot per canvas.
+
+221
+00:14:35,680 --> 00:14:40,666
+So, if you only have a single plot, you
+generally, not going to be using the outer
+
+222
+00:14:40,666 --> 00:14:43,360
+margin.
+But, if you have many different plots,
+
+223
+00:14:43,360 --> 00:14:48,357
+then you want, sometimes you want to have
+a label or a, or a, or something like that
+
+224
+00:14:48,357 --> 00:14:52,911
+for, that rep, that is relevant to all the
+plots, not just a single plot.
+
+225
+00:14:52,911 --> 00:14:56,323
+Mfrow and mfcol are described before, the
+defaults are one, one.
+
+226
+00:14:56,325 --> 00:14:59,173
+So, that's one plot per row, one plot per
+column.
+
+227
+00:14:59,173 --> 00:15:01,737
+And so, that's of course, that just means
+a single plot.
+
+228
+00:15:01,737 --> 00:15:05,608
+You can have, if you want to specify say,
+four plots, you want to have like two by
+
+229
+00:15:05,608 --> 00:15:10,392
+two, then you have two plots per row, two
+plots per column then that kind of has,
+
+230
+00:15:10,392 --> 00:15:14,781
+it's a four square type of thing.
+If you wanted to have four plots for all
+
+231
+00:15:14,781 --> 00:15:19,101
+in a single row, then you could specify
+mfrow would be one and then four, so it
+
+232
+00:15:19,101 --> 00:15:22,060
+would be one row, four columns, things
+like that.
+
+233
+00:15:23,041 --> 00:15:26,097
+So, a couple of importing base, important
+base plotting functions.
+
+234
+00:15:27,014 --> 00:15:30,713
+Of course, plot is a, is the probably the
+most basic makes a scatter plot.
+
+235
+00:15:30,713 --> 00:15:36,093
+It may make another type of plot depending
+on the class of the object being plotted.
+
+236
+00:15:36,093 --> 00:15:40,573
+So, if you have an object that's a, that
+has a special class, that's not a numeric
+
+237
+00:15:40,573 --> 00:15:45,135
+vector or it's not an integer vector or
+something like that, then plot may make a
+
+238
+00:15:45,135 --> 00:15:48,733
+different type of, of plot.
+But, for the most part, we're going to be
+
+239
+00:15:48,733 --> 00:15:52,808
+making scatter plots with this function.
+Lines is a function that adds.
+
+240
+00:15:52,808 --> 00:15:57,070
+So, so the following functions, sorry, is
+going to, are going to add to a plot.
+
+241
+00:15:57,070 --> 00:15:59,801
+They're not going to make a plot by
+themselves.
+
+242
+00:15:59,801 --> 00:16:04,168
+So, so functions like lines, points,
+texts, etc., you cannot call them unless
+
+243
+00:16:04,168 --> 00:16:08,077
+you all, have already constructed a plot
+on, on, on the plotting device.
+
+244
+00:16:08,077 --> 00:16:11,652
+So, lines adds lines to a plot.
+So, basically, it plays connects the,
+
+245
+00:16:11,652 --> 00:16:14,858
+connect the dots.
+So, if you give it a vector of x values
+
+246
+00:16:14,858 --> 00:16:20,045
+and vector of y values, it will put those,
+it will put those points on the canvas and
+
+247
+00:16:20,045 --> 00:16:23,027
+connect the dots between them to create
+lines.
+
+248
+00:16:23,027 --> 00:16:27,086
+Points, basically, adds points to a plot.
+It's kind of like lines but it doesn't
+
+249
+00:16:27,086 --> 00:16:31,637
+actually draw the lines in between the
+points, so you give it an x, a set of x
+
+250
+00:16:31,637 --> 00:16:35,099
+values and a set of y values and it puts
+those points on the plot.
+
+251
+00:16:35,099 --> 00:16:40,058
+Text adds text labels to a plot.
+So, you give it some coordinates and it
+
+252
+00:16:40,058 --> 00:16:44,039
+will, it will put the text at those
+coordinates on the plot.
+
+253
+00:16:44,039 --> 00:16:47,037
+Title will add a title to the top of the
+plot.
+
+254
+00:16:47,056 --> 00:16:52,028
+But, you can also use title to add things
+like x-axis labels, y-axis labels, and
+
+255
+00:16:52,028 --> 00:16:56,707
+subtitles and things like that.
+Mtext adds text to the margins, either the
+
+256
+00:16:56,707 --> 00:17:01,003
+inner margin or outer margin of the plot.
+An axis adds, annotates the, the axes.
+
+257
+00:17:01,003 --> 00:17:07,442
+So, like things like the tick marks, you
+can add special labels to the tick marks
+
+258
+00:17:07,442 --> 00:17:13,360
+if you don't want the defaults.
+So, the diff, there are a number of
+
+259
+00:17:13,360 --> 00:17:19,479
+different types of graphics devices that
+you can plot, send plots to besides the
+
+260
+00:17:19,479 --> 00:17:22,794
+screen.
+So, the screen will just be whatever the
+
+261
+00:17:22,794 --> 00:17:27,868
+default is for your dev, platform, so on
+X11 on Unix, Windows on Windows, and
+
+262
+00:17:27,868 --> 00:17:31,852
+Quartz on the Mac.
+So, but there are other types of devices
+
+263
+00:17:31,852 --> 00:17:35,568
+that you might want to use.
+Probably, the most common is the PDF
+
+264
+00:17:35,568 --> 00:17:38,691
+device.
+And this is very nice for making kind of,
+
+265
+00:17:38,691 --> 00:17:41,602
+print quality graphics for line type
+graphics.
+
+266
+00:17:41,602 --> 00:17:46,202
+It's a vector format, so it re-sizes very
+well without losing any quality.
+
+267
+00:17:46,202 --> 00:17:49,838
+And it's, it's viewable on pretty much any
+modern platform.
+
+268
+00:17:49,838 --> 00:17:53,601
+The PDF, so most, if you're using, if
+you're making a scatter plot or that kind
+
+269
+00:17:53,601 --> 00:17:56,746
+of a thing, those, that's, that's a line
+type graphic.
+
+270
+00:17:56,746 --> 00:18:01,094
+It's going to be suitable for PDF.
+Postscript is an older format, kind of a
+
+271
+00:18:01,094 --> 00:18:04,702
+predecessor to PDF.
+It's generally not used very often right
+
+272
+00:18:04,702 --> 00:18:07,707
+now and so I would recommend against using
+it.
+
+273
+00:18:07,707 --> 00:18:12,552
+Xfig is a format that's specifically for
+Unix, and it's useful if you want to edit
+
+274
+00:18:12,552 --> 00:18:16,054
+the plot by hand, but it's not
+particularly common.
+
+275
+00:18:16,054 --> 00:18:21,465
+So, bitmap formats are very important for,
+for, for graphics that are things like
+
+276
+00:18:21,465 --> 00:18:24,498
+imagines.
+Or, if you are going to make a graphic
+
+277
+00:18:24,498 --> 00:18:29,486
+that has lots and lots of points on it,
+typically you're going to want to use a
+
+278
+00:18:29,486 --> 00:18:33,259
+bitmap format because it reduces the size
+of the graphics file.
+
+279
+00:18:33,259 --> 00:18:37,404
+So, for example, if you have a plot, if
+you have a scatter plot that has, you
+
+280
+00:18:37,404 --> 00:18:41,368
+know, two million points on it.
+If you make a PDF file of that, the PDF
+
+281
+00:18:41,368 --> 00:18:46,278
+document has to specify kind of, a little
+bit information for every single one of
+
+282
+00:18:46,278 --> 00:18:49,614
+those points.
+So, two million points may be two things
+
+283
+00:18:49,614 --> 00:18:55,452
+and it, and the PDF file's going to be
+very, very large if you make a PDF version
+
+284
+00:18:55,452 --> 00:18:59,038
+of that graphic.
+However, a bitmap device, sorry, a bitmap
+
+285
+00:18:59,038 --> 00:19:03,205
+format will always be the same.
+It will, will just specify as a number of
+
+286
+00:19:03,205 --> 00:19:07,771
+pixels and so you don't have to specify
+information for every single object in the
+
+287
+00:19:07,771 --> 00:19:09,964
+plot.
+And so, and furthermore, most of the
+
+288
+00:19:09,964 --> 00:19:14,308
+bitmap formats are, are compressed and,
+and so the size, the file sizes tend to be
+
+289
+00:19:14,308 --> 00:19:17,328
+a lot smaller.
+So, if, so if the file size is important
+
+290
+00:19:17,328 --> 00:19:21,207
+to you, then you're going to want to learn
+about bitmap formats.
+
+291
+00:19:21,207 --> 00:19:26,133
+The disadvantage of bitmap formats is that
+they generally, they generally don't
+
+292
+00:19:26,133 --> 00:19:29,005
+re-size very well.
+So, if you try to re-size them, then
+
+293
+00:19:29,005 --> 00:19:32,648
+you'll lose some quality.
+And so, they generally, they're designed
+
+294
+00:19:32,648 --> 00:19:37,602
+to be of a specific size for their, for
+specific resolution and, and they don't
+
+295
+00:19:37,602 --> 00:19:40,067
+re-size very well.
+So, PNG is a very nice format.
+
+296
+00:19:40,067 --> 00:19:45,548
+It's good for line drawings, images with
+solid colors, surface things like scatter
+
+297
+00:19:45,548 --> 00:19:49,061
+plots, and, and it uses a lossless
+compression algorithm.
+
+298
+00:19:49,074 --> 00:19:53,011
+For those of you who are a little bit
+older, you might remember the old GIF
+
+299
+00:19:53,011 --> 00:19:55,015
+format.
+So, it's kind of like the old GIF format.
+
+300
+00:19:55,044 --> 00:19:59,056
+But, and in most web browsers these days
+can read this format natively, so you
+
+301
+00:19:59,056 --> 00:20:03,073
+don't have to worry about it being, not
+being able to be read in a web browser.
+
+302
+00:20:03,090 --> 00:20:08,038
+The JPG format, most of you are probably
+familiar with, is good for photographs or
+
+303
+00:20:08,038 --> 00:20:11,076
+natural scenes.
+It uses lossy compression, and so you'll
+
+304
+00:20:11,076 --> 00:20:14,097
+lose some quality.
+But the file size tends to be very, very
+
+305
+00:20:14,097 --> 00:20:17,057
+small.
+If you use, if you use JPG for line
+
+306
+00:20:17,057 --> 00:20:20,489
+drawings, you'll probably see a little bit
+of distortion.
+
+307
+00:20:20,489 --> 00:20:24,783
+So, it's not particularly good for that.
+Again, it doesn't re-size particularly
+
+308
+00:20:24,783 --> 00:20:28,682
+well because it's a bitmap format and,
+but, of course, any would, any computer,
+
+309
+00:20:28,682 --> 00:20:31,461
+any web browser can read a JPG file these
+days.
+
+310
+00:20:31,461 --> 00:20:36,155
+Bitmap is a function that's used to create
+bitmap files in certain, in certain, in
+
+311
+00:20:36,155 --> 00:20:40,671
+situations where you cannot use the PNG
+and JPG functions.
+
+312
+00:20:40,671 --> 00:20:45,592
+These are rare, they usually involve
+situations where you're running R in the
+
+313
+00:20:45,592 --> 00:20:48,492
+batch mode.
+And, so you can't call those other
+
+314
+00:20:48,492 --> 00:20:51,599
+functions.
+But, and so, this can be used to create in
+
+315
+00:20:51,599 --> 00:20:55,166
+a variety of bitmap formats.
+But, generally you won't, you will not
+
+316
+00:20:55,166 --> 00:20:59,355
+need to use it in most situations, for
+example, if you're running it, R on your
+
+317
+00:20:59,355 --> 00:21:02,003
+laptop.
+Finally, the BMP format is a native
+
+318
+00:21:02,003 --> 00:21:05,029
+Windows bitmap format.
+It's usually used for specifying things
+
+319
+00:21:05,029 --> 00:21:10,089
+like icons.
+So, when you make the, when you make a
+
+320
+00:21:10,089 --> 00:21:13,043
+plot, there's kind of two basic
+approaches.
+
+321
+00:21:13,043 --> 00:21:18,021
+First, is you, if you want to send a plot
+to a file, you can either, you can first
+
+322
+00:21:18,021 --> 00:21:23,113
+approach to launch a graphics device, make
+the plot, add things to it, annotate it if
+
+323
+00:21:23,113 --> 00:21:26,056
+you need it, then close the graphics
+device.
+
+324
+00:21:26,074 --> 00:21:31,083
+The other process is you can make a plot
+on a screen, annotate if needed, and then
+
+325
+00:21:31,083 --> 00:21:36,048
+you can copy the plot to another device.
+For example, you can copy the plot to
+
+326
+00:21:36,048 --> 00:21:40,863
+another screen device, so another window,
+or you can copy the plot to a file.
+
+327
+00:21:40,863 --> 00:21:45,810
+So, copying the plot to another device can
+be useful because if you, if you recall a
+
+328
+00:21:45,810 --> 00:21:51,028
+lot of different functions for making the
+plot, it can be kind of a pain to type all
+
+329
+00:21:51,028 --> 00:21:55,021
+that code again if you just want to see
+the plot on different device.
+
+330
+00:21:55,021 --> 00:21:59,196
+So, for example, if you want to save the
+plot to a file, usually the easiest thing
+
+331
+00:21:59,196 --> 00:22:03,050
+to do is to say, dev.copy2pdf which will
+copy a plot to a PDF file.
+
+332
+00:22:03,067 --> 00:22:08,025
+And then, you can have a, a PDF version of
+that file, of that plot, excuse me, and
+
+333
+00:22:08,025 --> 00:22:12,059
+then you can include that in a paper,
+include that in a presentation, etc.
+
+334
+00:22:12,076 --> 00:22:17,033
+Of course, it's always good to save the
+code that you used to make a plot, because
+
+335
+00:22:17,033 --> 00:22:21,068
+if you ever close R and then start up
+again and you wanted to make that plot
+
+336
+00:22:21,068 --> 00:22:26,280
+again, you're going to want to have that
+code lying around rather, rather than have
+
+337
+00:22:26,280 --> 00:22:29,047
+to kind of, rethink how you made that plot
+over again.
+
+338
+00:22:29,047 --> 00:22:34,027
+So, always save the code for making a plot
+so that you can reproduce it at a later
+
+339
+00:22:34,027 --> 00:22:37,009
+date.
+Some basic functions, though, for copying
+
+340
+00:22:37,009 --> 00:22:41,077
+of plots are dev.copy, which just copies
+from one device to another device.
+
+341
+00:22:41,077 --> 00:22:47,003
+Dev.copy2pdf, I mentioned already, copies
+from one device, usually the screen, to a
+
+342
+00:22:47,003 --> 00:22:50,000
+PDF file.
+Dev.list shows how many open graphics
+
+343
+00:22:50,000 --> 00:22:53,068
+devices there are.
+Dev.next will switch control to another
+
+344
+00:22:53,068 --> 00:22:58,049
+graphics device cuz you can only plot to a
+single graphics device at a time.
+
+345
+00:22:58,049 --> 00:23:02,531
+Dev.set will determine, can let, can let
+you set which graphics device you're
+
+346
+00:23:02,531 --> 00:23:07,003
+plotting on, and dev.off will close the
+current graphics device.
+
+347
+00:23:07,003 --> 00:23:09,071
+So, copy, copying plots is not an exact
+operation.
+
+348
+00:23:09,071 --> 00:23:13,074
+So, if you have a plot that's on your
+screen, and you copy it to a PDF file, it
+
+349
+00:23:13,074 --> 00:23:17,051
+may not be exactly what you see on the
+screen just because there's some
+
+350
+00:23:17,051 --> 00:23:28,009
+approximation that has to occur when you
+copy plots from one device to another.
