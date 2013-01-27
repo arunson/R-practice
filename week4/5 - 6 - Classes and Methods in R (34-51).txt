@@ -1,0 +1,1069 @@
+
+This lecture is going to be about classes
+and methods in R.
+So classes and methods are a system for
+doing object-oriented programming in R.
+And R was actually originally quite
+interesting and novel as a programming
+language.
+Because it was both structured as an
+interactive language but also had a system
+for doing object-orientation.
+So many other languages, obviously support
+object-oriented programming languages like
+C++,+, Java, Lisp, Python, and Pearl.
+But generally speaking, these are not
+what, what one might consider interactive
+languages.
+And they're generally thought of as being
+languages where you write programs, and
+you either run them through an interpreter
+or run them through a compiler to create
+an executable.
+R is both an interactive language where we
+kind of type things at the command line
+and things happen right away.
+But it can also be used to write programs
+and, and also it can be used the object
+oriented system can be used to create new
+types of, data types.
+So,
+In R, in R, match the code for writing
+class and methods was written by John
+Chambers himself who's the creator of the
+original S language.
+If you remember from lecture one and much
+of the kind of theory and design of the
+system is documented in the book
+programming with the data.
+A guide to the S language is also
+sometimes refer to as the green book.
+So, John Chambers actually is still
+working very heavily in, on developing the
+classes and methods system in R and so new
+things are, are frequently appearing in
+the language as time goes on.
+The, the idea behind classes and methods
+and the ability to create new types of
+data in R,
+R is, is a natural extension of Chamber's
+original idea of allowing someone to kind
+of cross from the user to the programmer.
+So remember, there was this spectrum that
+was kind of unerlied the philosophy of the
+R language, or the language I should say
+which is to allow people, people to kind
+of introduce themselves to the language as
+users and then eventually, kind of, as
+they use the language can, and they
+develop new and more complicated needs,
+they can become programmers and develop
+new types and program kind of new things
+into the R language.
+So the classes and method system is really
+kind of for the programmer end of the
+spectrum, where people need to do new
+things that are not in the R language
+already.
+So the object, object-oriented programming
+is in R is a little bit different than it
+is for most languages.
+So even if you're very familiar with other
+languages like C+++ or Java or whatnot you
+may want to pay attention a little bit to
+the details here.
+Because it's not really the,
+It's not what you might expect necessarily
+as it is with other languages.
+So first thing that it's worth knowing is
+that there are two separate systems of
+object orientation in R.
+And they, and they are, they represent an
+evolution of the system across different
+versions of the language.
+So, the first system is called S3 classes
+and methods.
+And this system was included with version
+three of the S language.
+It's a very informal system and frankly, a
+little bit cloogey and this system is
+sometimes referred to, if you read, if you
+look on the Web, it's sometime referred to
+as old style classes and methods.
+The main limitation with this type of
+system here was that the new classes of
+data did not have a formal definition.
+And so, and so therefore they were a
+little bit, they could run into problems
+for more complicated situations.
+In version four of the S language that,
+the S4 classes and method system was
+introduced.
+This is a much more formal system and much
+more rigorous and therefore a little bit
+less prone to kind of unexpected problems.
+It was included in S plus version six
+which is the commercial version of the S
+language.
+And it was included in R version 1.4.0
+which was around December 2001.
+And these are sometimes referred to as new
+style classes methods or just S4 classes
+and methods.
+And.
+So, for now and probably for the
+foreseeable future the S3 system and the
+S4 system are separate and they will
+probably exist in parallel for quite
+sometime.
+Just because a lot of the older aspects of
+the language just depend on the S3 system.
+But you can mix the two together if, if
+necessary.
+Eah system is fairly independent.
+And developers of new products of, for
+example, people like you who may be
+interested in writing new things, are
+generally encouraged to use the S4, the S4
+classes and methods system because of
+there more their formality and rigor.
+And these are used, for example, very
+extensively in the bioconductor project
+for those of you who are interested in
+kind of genomic or bioinformatic type
+analyses.
+But many developers still use the S3
+classes and methods system because they're
+quick and dirty.
+And they're, and they're frankly much
+easier to implement than the S4 system.
+So I will talk a little bit about the S3
+system here.
+But I'm going to, but I'm going to talk
+more about the S4 classes.
+And the examples, that I gave will be for
+S4 classes and methods.
+And, and it's, and finally, the code for,
+for implementing S4 classes and method
+system in R.
+Is all in the methods package.
+Now, the methods package will generally be
+loaded by default.
+So you don't have to do anything special
+to load it.
+But some systems may be customized and
+did, maybe don't load it by default.
+And so you can always load the methods
+package with the library function.
+So the way the object-oriented,
+programming in, in R works is you have
+classes and methods as you probably
+guessed by now.
+So a class is a description of a thing.
+So think of a data type,
+Think of a new type of object that doesn't
+already have representation in the R
+language.
+So, it's just, and so the class describes
+what the thing is.
+And the class can be defined using the set
+class function in the methods package.
+So, the second definition is an object.
+An object is just an instance of a class.
+So, for example a real number is a
+numeric, is the class, of a of a real
+number is, is numeric.
+Alright, so that's any, that's a kind of a
+continuous number between minus infinity
+and plus infinity.
+Alright?
+So the number 4.3 is an instance of that
+numeric class, and number 6.5 is another
+instance of that numeric class.
+So, 4.3 and 6.5 are not the same thing.
+They are different objects, but The are
+all of the same class.
+So, for new type of objects, you can
+create them using the function new.
+Is a function that only operates on a
+certain class of objects, right.
+So and then, and so for example there
+maybe some functions that only make sense
+for, for example, numeric objects or
+integer objects or some new type of data
+class like a matrix or something like
+that.
+So a method, remember, is a function that
+only operates on a certain class of
+objects.
+Now, a generic function.
+Is an, is any R function that dispatches
+methods.
+So typically the functions that you
+interact with are generic functions, and
+they're not the methods themselves.
+And the generic function usually encap-
+encapsulates s some sort of generic
+concept.
+For example a plot, or the mean or
+predict.
+So plot, mean and predict, they can all
+have different.
+Behaviors depending on what you applying,
+what you are taking the mean of and what
+you are trying to predict.
+So, those are generic functions and the
+point of the generic function is that it
+doesn't actually do any computation.
+The generic function doesn't do anything.
+The only thing that the generic function
+does is it, is it takes the data, figures
+out what class the data.
+Comes from and then, and then finds a
+method for that class and then it calls
+the method on that class of data.
+That's all the generic function does.
+So the generic function's kind of like a
+traffic cup.
+It sees data coming in and it matches it
+with the appropriate method.
+So, finally a method then, is basically an
+implementation of a generic function for
+an object of a particular class, so those
+are the basic concepts of the class and
+method system in R.
+So if you're looking for documentation,
+there's a few places that you can take a
+look at.
+These are the, these help pages are the
+primary documentation for the system, so
+you might want to kind of refer to them
+regularly.
+So the first place is the help page for
+classes and for methods.
+And these are very long help pages and
+they have extensive descriptions on how
+the system works.
+Following that you can also look at the
+help page for set class, set method and
+set generic.
+These have a lot of other details on how
+you can define a class and define a
+method.
+Now the documentation element gets very
+technical so you'll have to try your best
+for now.
+But it will kind of, as you continue to
+use the system, it will make more sense as
+you go along.
+And it's key to remember that most of the
+documentation in the methods package is
+designed for programmers.
+It's not designed for casual users because
+casual users will probably not be wanting
+to define their own classes and methods
+for new data types.
+And so the, the general idea behind the
+documentation.
+Here is that you're a programmer, and
+you're looking for these kinds of details.
+Okay,
+So just very basic examples of classes
+here.
+Every R object has a class and you can
+determine what that class is with the
+class function.
+So, for example, the number one, by
+default, is numeric and we discussed this
+before.
+Even though one looks like an integer.
+By default, if you just say one, without
+the capital l, next to it.
+R will just assume it's a numeric or real
+number.
+The logical true is the logical class of
+your simulating some random normal, random
+variables.
+Those are numeric.
+Na by default will be logical.
+But you can also have character NA, the
+numeric NA, and integer NA if you want.
+Those can be obtain through coercion.
+Finally the character string foo is a, of
+class character, obviously.
+So data classes,
+Those are, the previous slide had the
+atomic classes.
+But, of course, the data classes can go
+way beyond that.
+So here, I'm just fitting a simple linear
+model, a linear regression model, with the
+lm function.
+And the object that is returned by lm, is,
+is, has a class lm.
+So lm is, is, is both a function but it's
+also the name of a class, which represents
+a fitted linear regression model and there
+will be elements.
+And then, so, that's like a new type of
+data.
+And you may want to do special things with
+that new type of data.
+For example, you might want to print the
+output in a special way.
+So, you notice that when you print the
+out, the,
+Object returned by lm,
+It has a very nice summary table of the
+regression coefficients and things like
+that.
+You may also want to call summary on this.
+If you call summary on the output from lm,
+you get a regression table with standard
+errors and p-values and things like that.
+And so you can customize the output of, of
+a function by defining a class for the
+output.
+And then kind of customizing the methods
+for that class.
+So couple of notes about the differences
+between S4 and S3.
+S4 and S3 generic functions look
+different, but conceptually, they're the
+same.
+They both play the same role, but when you
+look at the code, they will look a little
+bit different.
+So, they're, when you write a program when
+you write new classes or methods, you can
+write new methods for an existing generic,
+or you can create your own generic and
+associate methods with it and if your data
+type, if you encounter some data in R that
+you don't, you can't store in existing
+type of class, you can always create a,
+your own class, and generics and methods
+to go with it.
+So here's a basic generic function, it's
+the mean function.
+So when I print out the code for mean,
+you'll see that it has a, it has a
+function.
+Prototype is its function and X is its
+first argument and then dot, dot, dot is
+afterwards right so dot, dot, dot members
+of variable number of arguments.
+And then the only bit of code in there is
+this function used method and then it
+gives, then it calls mean.
+So what used method does is it basically
+dispatches the method for a given data
+type.
+So X, the argument that's past the mean is
+going to have a certain class the used
+method function will figure out what that
+class is and it will dispatch the
+appropriate method.
+This type this stuff here with the byte
+code and the environment, don't worry
+about that, it's not important right now.
+So the print function is another very
+important generic function.
+Lot's of things need to be printed but not
+everything needs to be printed in the
+exact same way.
+So it's important that different data
+types are printed in slightly different
+ways.
+So often than not, not everything kind of
+looks the same.
+So here if you print just take the generic
+function for print takes a single argument
+x and dot, dot, dot which can be any of a
+number of arguments and then it just calls
+use method.
+And so there are, the use method will
+identify the class of x and then call the
+appropriate print method.
+So, what kinds of methods are out there
+for a given generic function?
+So, for the S3 system, you can call the
+methods function and then you give it the
+name of the generic.
+And it will tell you what types of methods
+are out there.
+So there is a method for data frame.
+There is a method for date.
+There is a method for what's called
+default.
+And then a couple of classes here dif time
+POSIXct and POSIXlt So you'll notice that
+the structure here is that the generic is
+the first part of the function name and
+then it's followed by a dot and then it's
+followed by a the class of the object
+which is either a data frame or a date a
+dif time etc.
+And so it's generic.class so you can also
+see what kinds of S4 generics, and methods
+are out there too.
+So in S4, S4 doesn't has, an equivalent
+function, a function that's equivalent to
+print and it's called show.
+And so the show function, you can see here
+when you print out the body of the
+function, it prints out a little bit
+differently than an S3 generic function.
+So it's the standard generic for show
+defined for the packaged method.
+So it tells you where the, where, the
+function is defined.
+You can see that the prototype here it
+just takes a single argument called
+objects.
+And no dot, dot, dot.
+And then the calls to function is standard
+generic.
+So, even though the names the structure of
+those functions looks a little bit
+different.
+And, it's called standard generic instead
+of views method.
+The basic idea is still the same.
+The show function doesn't do anything.
+It identifies the class of the object and
+then it dispatches the appropriate method.
+So both the show function and the print
+function, generally speaking, are not
+called explicitly very often, because
+often objects will be auto-printed.
+But when you auto-print an object, it
+still calls the print method for that
+object, you just don't call it explicitly.
+So, there are many different methods for
+this show generic function.
+So, you can always just call the function
+show methods on the on show and it will
+tell you all of the classes for which the
+show generic function is.
+So, these are all the methods for which
+show is defined.
+So, and you may not recognize any of these
+classes, but that's okay.
+So, the first argument for any generic
+function is going to be an object of a
+particular class.
+There may be other arguments for example
+like, the mean function has the NA.RM
+argument but those will be less important.
+And, so you wanna be able to, you want to
+define the generic function as taking
+objects of a particular class.
+So, and the way the procedure works, and
+this is both for S three and S four is
+that the generic function checks the class
+of the object.
+And then it searches to see if there's an
+appropriate method that's just designed
+just for that class.
+If there is a method that's designed just
+for that class then the generic function
+will call that method on the objects and
+then the method will execute.
+And then whatever happens, happens.
+If a method does not exist specifically
+for that class then a search is done to
+see if there's what's called a default
+method.
+So, this is a method that is called on
+anything for which no other method exists.
+If the default method exists, then the,
+the default method is called on that
+object and then the method runs and then,
+what happens, happens.
+If a default method doesn't exist, then
+you'll get an error cuz it doesn't know
+what to do in that case.
+So if you want to look at the code for an
+S3 or an S4 method, it's a little bit more
+complicated than just printing out the
+code for a function.
+So for a standard function, if you just
+print out the name of the function, and
+hit, if you just type out the name of the
+function and hit enter.
+It will print out all of the code that's
+in that function.
+But it doesn't quite work that way for
+classes and for methods.
+So if you want to see how the mean
+function works for a particular type of
+data, You have to use a function to get
+the code for that method.
+So you can't just print out the code.
+So if you want to see the code for S3
+method, if you use the function get S3
+method.
+And it takes the form of the generic
+function as first argument.
+The name of the generic function as the
+first argument and then the name of the
+class as the second argument.
+So for S4 methods, you can use the
+function get method which will.
+Which takes the generic function as the
+first argument, and the signature, which
+I'll talk about later as the second
+argument.
+So, you'll know that.
+If you're, if you're wondering how the S,
+how you know the difference between an S3
+and an S4 method.
+You'll know by the, by the way the generic
+function looks,
+If you print out the generic function, and
+it has use method, that's an S3 function,
+and the methods will be S3 functions.
+If you see If you print out a generic and
+a and a, and it calls the function
+standard generic, like the show, the show
+function did, then that's an S4 function.
+You want to look at S4 methods so here's
+how just a very simple example of how
+generics and methods work.
+So I'm going to stimulate some random
+normal data, 100 variants and I'm going to
+take the mean.
+So what happened here?
+So first of course, I set the seed to two
+then I simulated the data and extorted an
+object called X.
+Now the X is going to be, is a class, is
+an object of class numeric.
+Now when you call the mean generic
+function, it will notice that it's a class
+numeric but it'll also notice that there's
+no specific method for numeric objects.
+However, there is a default method for the
+mean so because there's no numeric method,
+it will call the default and then it
+returns the mean of that vector.
+So what does the mean, the default method
+for mean, look like?
+So here I'm calling s3, get s3 method to
+get the default method for the mean.
+And I'm just looking at the first couple
+lines of this function, so you can see it
+takes an argument x a trim argument which
+allows you to take trim means, if you're
+interested in that, and then in na.rm
+argument, which indicates whether you want
+to remove any na values or not.
+So here are the first six lines, and then
+I'm looking at the last six lines over
+here.
+So ultimately, there's a lot of processing
+that gets done by the, by the default
+method, but the, this internal. function
+indicates that most of the calculation for
+the actual mean occurs in C code.
+So you can't see the code there.
+So here's another example.
+I'm creating a data frame where the first
+column is a random normal vector and the
+second column is an integer vector.
+So now I've got a data frame where the
+first column is a numeric and the second
+column is integer and then I'm going to
+call S apply on the data frame and, and
+the mean function.
+So what this does now the mean's going to
+have a different, potentially different
+behavior on, on each column because each
+column is of a different class.
+However actually the first class, the
+first column is numeric and the second
+column is integer but there's no numeric
+method for mean and also there is no
+numeric method for,
+Sorry, sorry no integer method for mean.
+And so, in both cases it will call the
+default method and, and you'll get the
+behavior that you kind of expect.
+So you might notice that there are some
+methods that you can just, where you can
+just kind of, that you can call directly.
+So the mean.default function is a function
+that you can just call if you wanted to.
+And,
+But you should never call methods
+directly.
+So you should, in your code, you should
+never have a call to the mean.default
+function.
+You should always use the generic
+function.
+So always call mean and let the method be
+dispatched automatically.
+This is generally that way, if the method
+is changed or if the name, if the name of
+the method change or maybe some, or maybe
+later on, they, they, they implement a
+special numeric method.
+Just for the mean.
+Then you'll always be kind of doing the
+right behavior, in some sense, because if,
+if things go out of date, you don't have
+to worry about it.
+So, the idea is to use the extraction of
+the generic function, and only call the
+generic function and not to call the
+methods directly.
+Under the S4 system, it's not possible to
+call the, the underlying methods directly,
+so this is not a problem.
+It's only under the S3 system that in
+some, for some methods you can call them
+directly.
+So here's another example of, of the S3
+system is a plot, so the plot function is
+generic, and its behavior depends on the
+object that's being plotted.
+So here I'm generating some random normal
+data and I'm just going to plot.
+And so what plot does by default so X is a
+numeric factor but there's no special
+numeric method for plot.
+And so just, you just call the default
+method for plot, and what it does is it
+plots.
+The data against the index that would, so
+there's a 100 elements in this x vector.
+So it's just going to plot X versus one,
+two, three, four, five up to a 100.
+So that's all it does.
+And you see, it looks like noise because
+that's what it is.
+So what if I do something a little bit
+different.
+So I want to, I want to create my random
+normal vector X.
+But now I'm going to convert it into a
+time series object using the s.ts
+function.
+So now I've converted X to a time series
+object, I'm going to call the same
+function plot on x.
+And you can see that the plot is
+different.
+So, it's different because now I have the,
+all of the dots are connected with lines.
+And so, you get this line type time series
+plot instead of the circles you saw in the
+previous plot.
+So, that's how, that's basically how the,
+the methods will differ, because there is
+a special ts method, for plot and so, the
+plot function dispatched that method on
+this new, this ts data type and it created
+a slightly different plot.
+So, if you want to write new methods for
+new classes you wanna...
+You probably, you probably, if you create
+a new class of data, you'll probably want
+to end up writing a method for the print
+method or the show method, I'm sorry, the
+print or show generics, the summary
+generic and maybe the plot generic.
+Because usually if you're creating a data
+type, you're going to want to be able to
+print it out in a useful way, and you're
+probably going to want to plot it in some
+useful way.
+And so there are two basic ways that you
+can extend the R system using classes and
+methods.
+You can write a, you can write a method
+for a new class but for an existing
+generic.
+So it's going to be like print or show or
+you can write new generic functions and
+new methods for those generics.
+So, here's just a, so, wha-, I mean, why
+would you want to create a new class,
+Right?
+And so, and the basic reason is you, is
+you wantto represent new types of data.
+Right?
+So these are data that don't have a built
+in way.
+If for, in R, to kind of manipulate them
+right.
+So you don't need to create a new class
+for numbers because there's numeric,
+numeric class, integer class, there's a
+complex class.
+So there's classes to store those kind of
+data already but what if you have gene
+expression data.
+What if you have spacial temporal data or
+hierarchical data or maybe sparse
+matrices.
+There is no built in class for those types
+data.
+So you are going to have define one for
+yourself.
+They maybe just kind of new concepts or
+ideas or models that haven't been thought
+of yet or haven't been implemented yet
+such as a fitted point process model or
+mixed effects model or sparse matrix for,
+for, also for mixed effects models.
+And, and might want to create a, define a
+class for these types of data.
+So that you don't, so you don't have to
+kind of expose lots of messy
+implementation details for people who may
+be using your software.
+And, and be, and keep in mind that when I
+say that you wanna have a, there's like a
+new concept or a new type of data.
+This doesn't mean that these are new to
+the world.
+It just means that they are new to R.
+So R doesn't have a built in mechanism to
+deal with these kinds of things.
+So you have to write one, for yourself.
+So, a new class can be defined using the
+set class functions.
+Now, I'm gonna talk about S4 classes and
+methods and the way it define a new
+classes with set class.
+So, the key difference between S4 and S3
+is that, in S3 there is no way to define a
+class.
+So, objects do not have definitions, so
+for example the numeric, class there is
+not definition for that.
+Its just kind of implicitly exists.
+And so, and so, then so, so, it gets a
+little bit tricky because you don't
+exactly know What the definitions of these
+data types are.
+But under the S4 system the, the, you have
+an explicit definition for every class of
+data.
+And they are defined using the set class
+function.
+So at a minimum you need to specify the
+name of the class.
+All right?
+So it has to have some sort of name that
+you give it.
+And you can also specify data elements for
+that class, and these are called "slots."
+so these are things ins, so these are
+elements of the objects.
+So if you have an object of this view
+class, there may be elements in it that
+store data.
+And these are, these data are stored in
+slots.
+You can define methods for the class,
+using the set method function.
+And you can obtain information about an
+S-4 class, you can get the class
+definition with the show class function.
+So I'm gonna go through a simple example
+here, which is creating a class for
+polygons.
+So polygons don't have a special data
+class in R.
+There's no so there's no way to explicitly
+represent them.
+Of course, you can, you can think of
+different ways to represent them, maybe as
+a 2-column matrix, maybe as a list,
+whatever it may be but there's no explicit
+way to represent them in R.
+So I'm gonna create an explicit way here.
+So and this is in case you're interested,
+this is taken from the GPC, sorry from the
+GPC lib.
+The, package which is on plan if you want
+to take a look.
+So, and, generally speaking when you're
+creating new classes and methods, this is
+not something you do at the console, like
+typing it in interactively.
+Usually you're going to want to store this
+code in a separate file, and then source
+it into R later on.
+Because there's going to be a lot of code
+here, you don't want to be having to write
+it over and over again.
+So here I'm calling the set class
+function.
+And the first argument in the set class is
+the name of the class.
+So I'm just going to call it the polygon
+class.
+Just because that's what it is.
+And then the second argument, I have a,
+you see it says a representation.
+And then, in, in parentheses, I'm gonna
+define the slot.
+And so, I have two slots in this polygon.
+One is called x, and the other is called
+y.
+Both x and y are numeric objects, or, in
+this case, they're going to be numeric
+vectors.
+And, x is going to store the x coordinates
+of the vertices.
+And Y is going to store the Y coordinates
+of the vertices.
+And so that's basically it.
+It's very simple; it's very simple. It's
+very, a simple polygon class.
+It's definitely not the only way that you
+could have defined it; there are other
+ways you could have defined it.
+But that's the way I've decided to define
+it.
+So.
+Now if you create an object of class
+polygon, you can access the slots, in this
+case, X and Y.
+Using the operator the "at" operator.
+The at operator is not one that we have
+used before.
+And it is specifically reserved for
+accessing slots in an S4 object.
+So I'm going to create a plot method for
+polygons, and it's going to be very
+simple.
+Basically it's going to take the vertices
+of the polygon, and it's going to connect
+them with lines.
+That's all it does, and I need to use the
+set method function to do this.
+So for set method there you need to
+specify a minimum of three things.
+The first is the name of the generic
+function.
+In this case that's going to be plot.
+The second is a signature and the third is
+the function body.
+So what's the signature?
+So a signature is just a character vector
+that indicates the classes of the, the
+classes of objects that are going to be
+accepted by this method.
+In this case there's only class of objects
+that's going to be accepted by this method
+and that's a polygon object.
+And so for the second argument to set
+method, I just say polygi cause that's the
+name of the class that this method
+accepts.
+So And then I give it the function body.
+And, and the one thing about the function
+body is that the prototype here.
+Which specifies the arguments.
+Has to match exactly the, the function
+definition for (plot).
+So if you, if you recall from before the
+plot function has.
+Takes two arguments X and Y.
+And it's.
+And then has dot, dot, dot.
+And so if.
+Your, your method here also has to have X
+and Y in it.
+You can add other arguments beyond X and Y
+but you can't change the X and Y
+arguments, because that's part of the
+original generic function.
+So now in my, you can see in my function
+body, the first thing I do is I call plot
+again.
+Right?
+So I'm calling plot within the plot
+function and that's fine, because the
+reason is, when I call plot again I'm
+calling it on the X, the slots for this
+object X, and in this case the X and Y, p,
+slots which denote adverticies.
+Now.
+The x and y, slots in this object they,
+they are numeric objects.
+And so when I call plot again on them I'm
+going to.
+There's no numeric method so it's just
+gonna use the default method for plot.
+And it's just gonna plot the vertices on
+the, on the window.
+However, I was specifying type = n so it's
+not actually gonna plot anything.
+However, it's gonna set up the plot
+window, and so that I can later add
+things.
+So now, what do I do, is I'm taking the
+vertices in the, in the second and third
+line here.
+I'm taking the vertices of the polygon.
+And I'm creating a new vector which just
+tacks on the first vertex onto the end.
+So I'm creating a closed loop.
+And then, after I've done that, I call the
+lines function to draw lines in between
+all the vertices.
+So, notice that in this, in this plot
+method here, I call, I access the slots
+using the operator.
+So even though I called plot within the
+plot method, it doesn't create an infinite
+loop, because I'm ploying, I'm calling...
+Within this, within this method, I'm
+calling plot on a different type of data.
+So when I run this through R, I, I define,
+I create a new class in set class.
+And, set class, everything works okay,
+will not, will give you, will not return
+anything useful.
+So you won't get any readout or any
+printout, or any information; it will just
+run.
+And then, when I call the plot me-, the
+set method function, if there's no error,
+what you'll get.
+What it will print out is it will return
+the name of the generic function that you
+created the method for.
+So, you're not gonna get any useful
+message or messages or output from either
+of these methods.
+What set class and set method do is they
+have a side-effect, which is that they
+kind of register the class, and they
+register the method with the, with the,
+with the system.
+So, it's just to note, if you quit R,
+after calling set classes, set method,
+everything is forgotten.
+So, when you start up R again, it'll,
+later on, you're gonna have to redefine
+this class, you're gonna have to redefine
+this method.
+So after you call set method for the plot,
+for the new plot method for polygon
+objects, that method gets added to the
+list.
+There's a global list of methods for plot.
+And so if you call show methods on plot,
+you'll see that there is a there is a,
+there, there are two plot methods to find.
+The first is for any.
+And the second is for polygon.
+So the second one is the one that we just
+defined.
+But the one for any.
+Is the default methods.'Cause, so the
+default method takes any type of object;
+it doesn't care.
+Now, so, if I were to call plot on some
+other type of data, it would use the any
+method or the default method.
+However, if I call a plot on some special,
+on a polygon object, it would call my
+method.
+So here, very quickly I am creating a new
+polygon with a new function.
+So for the new function, I give it the
+name of the class, which is polygon.
+And I'm gonna fill in the slots.
+So for x, I say one, two, three, four,
+those are the x coordinates, and for y, I
+say one, two, three, one, those are the y
+coordinates, so that's my polygon.
+And I'm going to save it to logical P.
+So what I call plot P, the generic
+function plot will look for, check the
+class and by altering in this case class
+is called polygon, will look for messages
+to find for that.
+Indeed, I have a rate finals.
+So it calls my message and you can see
+that like all plot what it does connects
+all the dots and creates my little, draws
+my little polygon right here as expected.
+So that's the basic idea in terms of
+defining a class and defining a method for
+that class.
+So.
+And you can obbiously extend this to much
+more complicated types of data.
+So, there is a number of ways.
+Places where you could go from here I put
+a few exercises on the website that you
+can try to run through and try to define
+your own classes and methods.
+And the best way to look at, to learn this
+kind of stuff is to look at examples.
+So hopefully, you can get you can work
+through a few right now.
+There are many examples on CRAN these are
+packages that use s4 classes and methods,
+so you can check those out.
+The bio conductor project has a lot of
+packages that make extensive use of s4
+classes and methods.
+So even if you are not interested in bio
+dramatics or genomes or anything like
+that, it's.
+Still a useful place to go to if you want
+to learn about programming in this style.
+There are a number of packets on CRAN.
+I'm just gonna name a few here; the Sparse
+End, the GPC Lib package, which I've
+written the Flex Mix, ITS, Alamay four,
+Orient Lib, Pixmap.
+These all use S4 classes and methods.
+Also the Stats four package, which comes
+with R so you don't have to install it has
+a lot of classes and methods for doing
+maximum likelihood analysis.
+So this is a statistical concept which
+you.
+May or may not have learned.
+But if you're familiar with, maximum
+likelihood analysis, you may be interested
+in just looking at the code for the stats
+four package.
+Because it, it uses a lot of these S4
+classes and methods.
+So, that's a very, very quick introduction
+to the S3 and the S4 class and method
+system.
+There's obviously a lot more to talk
+about.
+But I think, but my goal was try to get
+you started with a little bit, so that you
+could try to define you're own data types
+and methods.
+You, you may go a very long time before
+you feel the need to use this system.
+Because a lot of the built in stuff for R
+is quite useful.
+And there are many.
+Any packages now that will kind of deal
+with all kinds of interesting data.
+So you may not feel you, the, a strong
+need to define a new class or a new
+method.
+And that's fine.
+However you, eventually you may come
+across a situation where you need to
+define something new, and this is the way
+to do it.
